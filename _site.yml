@@ -1,0 +1,6 @@
+name: "whr"
+navbar:
+  titel: "World Happiness Report in 2017"
+   left:
+       - text: "Home"
+         href: index.html
