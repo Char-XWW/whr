@@ -1,6 +1,6 @@
-name: "whr"
+name: "World Happiness Report in 2017"
 navbar:
-  titel: "World Happiness Report in 2017"
-   left:
-       - text: "Home"
-         href: index.html
+  title: "World Happiness Report in 2017"
+  left:
+    - text: "Home"
+      href: index.html
