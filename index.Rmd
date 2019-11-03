@@ -27,3 +27,24 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+###### first let´s improt the data
+The data was downladed form...
+
+```{r}
+data$Happiness.Score <- as.integer(data$Happiness.Score)
+data <- readr::read_csv(file = "data/2017.csv")
+```
+
+##plot
+
+
+```{r}
+library (ggplot2)
+g <- ggplot(data = data, 
+mapping = aes(x = Economy..GDP.per.Capita. , y = Happiness.Score, color = Health..Life.Expectancy.)
+)
+data$Happiness.Score
+g <- g + geom_smooth()
+g <- g + geom_point()
+g
+```
