@@ -13,7 +13,7 @@ data$Happiness.Score <- as.integer(data$Happiness.Score)
 
 ```
 
-## Plot 1: Happiness Score and GDP per Capital: dont touch here
+## Plot 1: Happiness Score and GDP per Capital
 ```{r}
 library (ggplot2)
 g <- ggplot(data = data, 
