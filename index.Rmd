@@ -37,7 +37,7 @@ ggplotly(p)
 ```{r}
 install.packages("maps")
 install.packages("wildcard")
-library("wildcard")
+library("wildcard" )
 world <- map_data('world')
 world <- world %>% filter(region != "Antarctica")
 world <- fortify(world)
