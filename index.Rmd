@@ -2,12 +2,12 @@
 title: "World Happiness Report in 2017"
 output: html_document
 ---
-
+ 
 
 ## 0.0_Introduction
 
 
-Happinnes is a very subjective term. Trying to quantify and standardize it is a fools task. The World Happiness Score as providded by citizens of different contries as part of a servey is a standardized although still subjective measure. This won't stop us from trying to analyze it though! 
+Happinnes is a very subjective term. Trying to quantify and standardize it is a fools task. The World Happiness Score as provided by citizens of different contries as part of a servey is a standardized although still subjective measure. This won't stop us from trying to analyze it though! 
 
  Now with the help of some graphics I will attempt to explore the  World Happiness Score in 2017 and the possible factors influencing it. 
 
@@ -15,7 +15,7 @@ Happinnes is a very subjective term. Trying to quantify and standardize it is a 
 
 ```
 
-##0.1_Insatll packages
+### 0.1_Insatalling packages
 
 ```{r}
 install.packages("corrplot")
@@ -24,13 +24,14 @@ install.packages("wildcard", repos = "http://cran.us.r-project.org")
 install.packages("viridis")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
+
 ## 1.0_ Graphic
 
 ```{r}
 
 ```
 
-## 1.1_Correlationmap
+### 1.1_Correlation map
 
 ```{r}
 
@@ -48,7 +49,7 @@ corrplot(cor(data %>%
          )
 ```
 
-## 1.2_Ranking: Contries and their Scores
+### 1.2_Ranking: Contries and their Scores
 
 ```{r}
 library(plotly)
@@ -60,7 +61,7 @@ usethis::use_package("plotly")
 ggplotly(p)
 ```
 
-## 1.3_World Map: happiness Score in the Worldmap
+### 1.3_World Map: Happiness Scores on a map
 
 ```{r}
 library("wildcard" )
@@ -86,7 +87,7 @@ ggplot() +
   labs(title = "World Happiness Score in 2017")
 ```
 
-## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
+## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.
 
 ```{r}
 
@@ -99,7 +100,7 @@ w <- w + scale_color_viridis(option = "D")
 w
 ```
 
-## Summary
+### Summary
 
 In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.
 Some interesting points while exploring the correlations between the different factors in the data set are:
