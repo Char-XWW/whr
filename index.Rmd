@@ -33,10 +33,10 @@ labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score
 usethis::use_package("plotly")
 ggplotly(p)
 ```
-### World Map_happiness Score
+###3_World Map: happiness Score
 ```{r}
-install.packages("maps")
-install.packages("wildcard")
+install.packages("maps", repos = "http://cran.us.r-project.org")
+install.packages("wildcard", repos = "http://cran.us.r-project.org")
 library("wildcard" )
 world <- map_data('world')
 world <- world %>% filter(region != "Antarctica")
