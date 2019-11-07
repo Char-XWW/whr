@@ -26,6 +26,7 @@ data <- readr::read_csv(file = "data/2017.csv")
 ## 1.1_Correlationmap
 
 ```{r}
+install.packages("corrplot")
 library("corrplot")
 corrplot(cor(data %>% 
                select(Happiness.Score:Dystopia.Residual)), 
@@ -82,6 +83,7 @@ ggplot() +
 ## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
 
 ```{r}
+install.packages("viridis")
 library("viridis")
 w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
 w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
