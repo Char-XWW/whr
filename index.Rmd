@@ -4,17 +4,27 @@ output: html_document
 ---
 
 
+## 0_0 Introduction
 
-## Including Plots
-## 0_Introduction
-The pursuit of happiness had been a part of humanity longer than some may think; some even argue that it’s the reason we continue to do more than just exist. Evidence of this stems back to Ancient Greece, when Philosophers such as Aristotle wrote about it in many of his texts. In fact, the “pursuit of happiness” was a vital part of the United States Declaration of Independence, written in 1776. With Thomas Jefferson stating how he believed that happiness is attainable by gaining knowledge and living a self-sufficient life surrounded by friends. If we look at the multitude of global religions, we see a similar importance placed on the idea of happiness.
+In this fast-move society, people are alway capble of multitask. It seems everyone gets what they have seeked for long time. But still, no matter what we already have had or achieved, are we really happy? I mean, really happy? The criterien of being happy is also diffenert.
+
+In fact, the “pursuit of happiness” was a vital part of the United States Declaration of Independence, written in 1776. With Thomas Jefferson stating how he believed that happiness is attainable by gaining knowledge and living a self-sufficient life surrounded by friends. 
+
+If we look at the multitude of global religions, we see a similar importance placed on the idea of happiness. Now with some graphics I will show you the World Happiness Score in 2017 in different point of views 
+
+
 ```{r}
 data <- readr::read_csv(file = "data/2017.csv")
 data$Happiness.Score <- as.integer(data$Happiness.Score)
 
 ```
+## 1.0_ Graphic
 
-## 1_Plot: Happiness Score and GDP per Capital
+```{r}
+
+```
+
+## 1.1_Plot: Happiness Score and GDP per Capital
 ```{r}
 library (ggplot2)
 g <- ggplot(data = data, 
@@ -25,7 +35,7 @@ g <- g + geom_point()
 g
 ```
 
-## 2_Ranking: Contries and their Scores
+## 1.2_Ranking: Contries and their Scores
 ```{r}
 library(plotly)
 p <- ggplot(data = data, aes(x = Happiness.Score, y = reorder(Country, Happiness.Score))) + geom_point(colour = "red", alpha = .5) + geom_segment(aes(yend=reorder(Country, Happiness.Score)), xend = 0, colour="pink", alpha = .5) + theme(axis.text.y = element_text(angle = 0, hjust = 1)) + 
@@ -33,7 +43,7 @@ labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score
 usethis::use_package("plotly")
 ggplotly(p)
 ```
-###3_World Map: happiness Score
+## 1.3_World Map: happiness Score
 ```{r}
 install.packages("maps", repos = "http://cran.us.r-project.org")
 install.packages("wildcard", repos = "http://cran.us.r-project.org")
