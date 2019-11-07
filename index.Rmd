@@ -82,8 +82,7 @@ ggplot() +
 ## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
 
 ```{r}
-install.packages("viridisLite")
-library("viridisLite")
+library("viridis")
 w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
 w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
 w <- w + labs(x = "GDP Per Capita", y = "Happiness Score", colour = "Health Expectancy" )
