@@ -23,16 +23,19 @@ data <- readr::read_csv(file = "data/2017.csv")
 
 ```
 
-## 1.1_Scatter Plot: Happiness Score and GDP per Capital
+## 1.1_Correlationmap
 
 ```{r}
-library (ggplot2)
-g <- ggplot(data = data, 
-                        mapping = aes(x = Economy..GDP.per.Capita. , y = Happiness.Score,                                       color = Health..Life.Expectancy.)
-)
-g <- g + geom_smooth()
-g <- g + geom_point()
-g
+library("corrplot")
+corrplot(cor(data %>% 
+               select(Happiness.Score:Dystopia.Residual)), 
+         method="color",  
+         sig.level = 0.01, insig = "blank",
+         addCoef.col = "black", 
+         tl.srt=45, 
+         type="upper",
+         tl.col = "gray"
+         )
 ```
 
 ## 1.2_Ranking: Contries and their Scores
