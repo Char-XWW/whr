@@ -44,7 +44,9 @@ corrplot(cor(data %>%
          addCoef.col = "black", 
          tl.srt=45, 
          type="upper",
-         tl.col = "gray"
+         tl.col = "gray",
+         tl.cex = 0.7,
+         number.cex = 0.7
          )
 ```
 
@@ -72,7 +74,6 @@ data <- wildcard(df = data, wildcard = "United States", values = "USA",
          expand = TRUE, rules = NULL)
 data <- wildcard(df = data, wildcard = "United Kingdom", values = "UK",
          expand = TRUE, rules = NULL)
-
 data <- wildcard(df = data, wildcard = "Democratic Republic of the Congo", values = "Congo (Kinshasa)",
          expand = TRUE, rules = NULL)
 ggplot() + 
@@ -99,3 +100,10 @@ w <- w + geom_smooth()
 w <- w + scale_color_viridis(option = "D")
 w
 ```
+
+## Summary
+
+In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.  
+```{r}
+```
+
