@@ -7,11 +7,9 @@ output: html_document
 ## 0.0_Introduction
 
 
-In this fast-move society, people are alway capble of multitask. It seems everyone gets what they have seeked for long time. But still, no matter what we already have had or achieved, are we really happy? I mean, really happy? The criterien of being happy is also diffenert.
+Happinnes is a very subjective term. Trying to quantify and standardize it is a fools task. The World Happiness Score as providded by citizens of different contries as part of a servey is a standardized although still subjective measure. This won't stop us from trying to analyze it though! 
 
-In fact, the “pursuit of happiness” was a vital part of the United States Declaration of Independence, written in 1776. With Thomas Jefferson stating how he believed that happiness is attainable by gaining knowledge and living a self-sufficient life surrounded by friends. 
-
-If we look at the multitude of global religions, we see a similar importance placed on the idea of happiness. Now with some graphics I will show you the World Happiness Score in 2017 in different point of views 
+ Now with the help of some graphics I will attempt to explore the  World Happiness Score in 2017 and the possible factors influencing it. 
 
 ```{r}
 
@@ -103,7 +101,13 @@ w
 
 ## Summary
 
-In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.  
+In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.
+Some interesting points while exploring the correlations between the different factors in the data set are:
+- GDP per Capita / Family and Health Life Expectancy seem to be most influencial to the happiness of a country's citizens.
+- Curiously GDP per Capita and Generosity have a slightly negative correlation - this might be an outlier or an error in my methodology, but analyzing this goes beyond my R capabilities.
+
+Furthermore looking at the map it is noticable that the majority of South American Contries tend to have proportinally higher Happiness Scores when compared to their economic prowess per capita. This might be culturally influenced. 
+
 ```{r}
 ```
 
