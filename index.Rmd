@@ -13,8 +13,17 @@ In fact, the “pursuit of happiness” was a vital part of the United States De
 
 If we look at the multitude of global religions, we see a similar importance placed on the idea of happiness. Now with some graphics I will show you the World Happiness Score in 2017 in different point of views 
 
+```{r}
+
+```
+
+##0.1_Insatll packages
 
 ```{r}
+install.packages("corrplot")
+install.packages("maps", repos = "http://cran.us.r-project.org")
+install.packages("wildcard", repos = "http://cran.us.r-project.org")
+install.packages("viridis")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 ## 1.0_ Graphic
@@ -26,7 +35,7 @@ data <- readr::read_csv(file = "data/2017.csv")
 ## 1.1_Correlationmap
 
 ```{r}
-install.packages("corrplot")
+
 library("corrplot")
 corrplot(cor(data %>% 
                select(Happiness.Score:Dystopia.Residual)), 
@@ -54,8 +63,6 @@ ggplotly(p)
 ## 1.3_World Map: happiness Score in the Worldmap
 
 ```{r}
-install.packages("maps", repos = "http://cran.us.r-project.org")
-install.packages("wildcard", repos = "http://cran.us.r-project.org")
 library("wildcard" )
 world <- map_data('world')
 world <- world %>% filter(region != "Antarctica")
@@ -83,7 +90,7 @@ ggplot() +
 ## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
 
 ```{r}
-install.packages("viridis")
+
 library("viridis")
 w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
 w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
