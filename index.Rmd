@@ -46,6 +46,7 @@ geom_segment(aes(yend=reorder(Country, Happiness.Score)), xend = 0, colour="pink
 labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score")
 usethis::use_package("plotly")
 ggplotly(p)
+p
 ```
 
 ## 1.3_World Map: happiness Score in the Worldmap
@@ -81,17 +82,17 @@ ggplot() +
 
 ```{r}
 plot_ly(data = data, 
-        x=~Economy..GDP.per.Capita., y=~Happiness.Score, color=~Health..Life.Expectancy., type = "scatter",
+        x =~ Economy..GDP.per.Capita., y =~ Happiness.Score, color =~ Health..Life.Expectancy., type = "scatter",mode = ('markers'),
         text = ~paste("Country:", Country)) %>% 
         layout(title = "Correlation of GDP, Happiness and Health Expectancy in 2017", 
                xaxis = list(title = "GDP per Capita"),
                yaxis = list(title = "Happiness Score"))
-### from this scatter we can know, that those contries with high GDP per Capita, also have higher Happiness Score and higher Heath expectancy. See? Money do matters.
 ```
 
-##2.0_Summery
+##1.5_Scatter Plot: iii
 
 ```{r}
-
+w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
+w <- w + guides()
 ```
 
