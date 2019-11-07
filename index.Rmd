@@ -15,7 +15,6 @@ If we look at the multitude of global religions, we see a similar importance pla
 
 ```{r}
 data <- readr::read_csv(file = "data/2017.csv")
-data$Happiness.Score <- as.integer(data$Happiness.Score)
 
 ```
 ## 1.0_ Graphic
@@ -24,7 +23,7 @@ data$Happiness.Score <- as.integer(data$Happiness.Score)
 
 ```
 
-## 1.1_Plot: Happiness Score and GDP per Capital
+## 1.1_Scatter Plot: Happiness Score and GDP per Capital
 
 ```{r}
 library (ggplot2)
@@ -46,7 +45,6 @@ geom_segment(aes(yend=reorder(Country, Happiness.Score)), xend = 0, colour="pink
 labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score")
 usethis::use_package("plotly")
 ggplotly(p)
-p
 ```
 
 ## 1.3_World Map: happiness Score in the Worldmap
@@ -81,18 +79,8 @@ ggplot() +
 ## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
 
 ```{r}
-plot_ly(data = data, 
-        x =~ Economy..GDP.per.Capita., y =~ Happiness.Score, color =~ Health..Life.Expectancy., type = "scatter",mode = ('markers'),
-        text = ~paste("Country:", Country)) %>% 
-        layout(title = "Correlation of GDP, Happiness and Health Expectancy in 2017", 
-               xaxis = list(title = "GDP per Capita"),
-               yaxis = list(title = "Happiness Score"))
-```
-
-##1.5_Scatter Plot: iii
-
-```{r}
 w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
-w <- w + guides()
+w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
+w <- w + labs(x = "GDP Per Capita", y = "Happiness Score", colour = "Health Expectancy" )
+w
 ```
-
