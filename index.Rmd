@@ -48,7 +48,7 @@ usethis::use_package("plotly")
 ggplotly(p)
 ```
 
-## 1.3_World Map: happiness Score
+## 1.3_World Map: happiness Score in the Worldmap
 
 ```{r}
 install.packages("maps", repos = "http://cran.us.r-project.org")
@@ -77,14 +77,21 @@ ggplot() +
   labs(title = "World Happiness Score in 2017")
 ```
 
-## 1.4_Scatter Plot: GDP and Happiness
+## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health..Life.Expectancy.
 
 ```{r}
 plot_ly(data = data, 
         x=~Economy..GDP.per.Capita., y=~Happiness.Score, color=~Health..Life.Expectancy., type = "scatter",
         text = ~paste("Country:", Country)) %>% 
-        layout(title = "Happiness, GDP and Health relationship", 
+        layout(title = "Correlation of GDP, Happiness and Health Expectancy in 2017", 
                xaxis = list(title = "GDP per Capita"),
                yaxis = list(title = "Happiness Score"))
 ### from this scatter we can know, that those contries with high GDP per Capita, also have higher Happiness Score and higher Heath expectancy. See? Money do matters.
 ```
+
+##2.0_Summery
+
+```{r}
+
+```
+
