@@ -22,7 +22,7 @@ install.packages("corrplot")
 install.packages("maps", repos = "http://cran.us.r-project.org")
 install.packages("wildcard", repos = "http://cran.us.r-project.org")
 install.packages("viridis")
-install.packages("magrittr")
+install.packages("dplyr")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 
@@ -37,7 +37,7 @@ data <- readr::read_csv(file = "data/2017.csv")
 ```{r}
 
 library("corrplot")
-library("magrittr")
+library("dplyr")
 corrplot(cor(data %>% 
                select(Happiness.Score:Dystopia.Residual)), 
          method="color",  
