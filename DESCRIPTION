@@ -12,12 +12,8 @@ License: What license it uses
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    plotly
-    corrplot
-    maps
-    wildcard
-    viridis
+    maps,
+    corrplot,
+    wildcard,
+    viridis,
     dplyr
-    install.packages("maps", repos = "http://cran.us.r-project.org")
-    install.packages("wildcard", repos = "http://cran.us.r-project.org")
-    
