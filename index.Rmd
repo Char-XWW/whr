@@ -9,14 +9,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## 0.0_Introduction
+## 0.0 Introduction
 
 
 Happinnes is a very subjective term. Trying to quantify and standardize it is a fools task. The World Happiness Score as provided by citizens of different contries as part of a servey is a standardized although still subjective measure. This won't stop us from trying to analyze it though! 
 
  Now with the help of some graphics I will attempt to explore the  World Happiness Score in 2017 and the possible factors influencing it. 
 
-### 0.1_Prepare Data
+### 0.1 Prepare Data
 
 ```{r}
 install.packages("plotly")
@@ -24,8 +24,8 @@ install.packages("corrplot")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 
-## 1.0_ Graphic
-### 1.1_Correlation map
+## 1.0 Graphic
+### 1.1 Correlation map
 
 ```{r}
 library("corrplot")
@@ -45,7 +45,7 @@ number.cex = 0.7
 This correlation plots shows us that Economic GDP score tends to have the biggest impact to happiness score and the Health score has the second biggest impact.Correlation between EGP and Happiness Score, Whisker high, whisker low are all 0,81, and it reachs even 0,84 when we put EGP and health Life Expectancy together.  
   
 
-### 1.2_Ranking: Countries and their Scores
+### 1.2 Ranking: Countries and their Scores
 
 ```{r}
 library(plotly)
@@ -56,7 +56,7 @@ ggplotly(p)
 ```
 Seems most of european countries have higher scores and afican countries have the lower scores. Follow we will use a Worldmap funktion to verify this guess.  
   
-### 1.3_World Map: Happiness Scores on a map
+### 1.3 World Map: Happiness Scores on a map
 
 ```{r}
 library("wildcard")
@@ -96,7 +96,7 @@ ggplot() +
 Worldmap shows us that America has actually the highest score while most of european contries have good scores.
 Asien countries follows Europe. Compare to the rest of the world a lot of african countries stay less happy or even unhappy.  
   
-## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.
+## 1.4 Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.
 
 ```{r}
 library("viridis")
@@ -109,7 +109,7 @@ w
 ```
 This interactive scatterplot shows that there is a strong positive correlation between GDP and Happiness. Also points are coloured by the Health score, which also suggeests that Health tends to have big impact to happiness.  
   
-### Summary
+### 3.0 Summary
 
 In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.
 Some interesting points while exploring the correlations between the different factors in the data set are:
