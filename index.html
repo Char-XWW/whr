@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Weiwei Xia" />
+
+
+<title>World Happiness Report in 2017</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">World Happiness Report in 2017</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">World Happiness Report in 2017</h1>
+<h4 class="author">Weiwei Xia</h4>
+<h4 class="date">11.11.2019</h4>
+
+</div>
+
+
+<div id="introduction" class="section level2">
+<h2>0.0 Introduction</h2>
+<p>Happiness is a very subjective term. Trying to quantify and standardize it is a fool’s task. The World Happiness Score as provided by citizens of different contries as part of a servey is a standardized although still subjective measure. This won’t stop us from trying to analyze it though!</p>
+<p>Now with the help of some graphics I will attempt to explore the World Happiness Score in 2017 and the possible factors influencing it.</p>
+</div>
+<div id="graphic" class="section level2">
+<h2>1.0 Graphic</h2>
+<div id="correlation-map" class="section level3">
+<h3>1.1 Correlation map</h3>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>This correlation plot shows us that Economic GDP per Capita score tends to have the biggest impact on happiness score and the Health score has the second biggest impact. Correlation between GDP per Capita and Happiness Score is at 0,81, and correlation even reaches 0,84 when we compare GDP per Capita to Health Life Expectancy.<br />
+<em>Whiskers</em> are the minimum and maximum deviations of the happiness score per country, excluding the outliers. It makes sense that they correlate, although a correlation of 1 might not be realistic. It does not help the analysis and should be ignored.</p>
+</div>
+<div id="ranking-countries-and-their-scores" class="section level3">
+<h3>1.2 Ranking: Countries and their Scores</h3>
+<div id="htmlwidget-93fa91f1371fc2bdddfa" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-93fa91f1371fc2bdddfa">{"x":{"data":[{"x":[7.53700017929077,7.52199983596802,7.50400018692017,7.49399995803833,7.4689998626709,7.3769998550415,7.31599998474121,7.31400012969971,7.28399991989136,7.28399991989136,7.21299982070923,7.0789999961853,7.00600004196167,6.99300003051758,6.97700023651123,6.95100021362305,6.89099979400635,6.86299991607666,6.71400022506714,6.65199995040894,6.64799976348877,6.63500022888184,6.60900020599365,6.59899997711182,6.57800006866455,6.57200002670288,6.52699995040894,6.4539999961853,6.4539999961853,6.4520001411438,6.44199991226196,6.42399978637695,6.42199993133545,6.40299987792969,6.375,6.35699987411499,6.3439998626709,6.16800022125244,6.10500001907349,6.09800004959106,6.08699989318848,6.08400011062622,6.07100009918213,6.00799989700317,6.00299978256226,5.97300004959106,5.97100019454956,5.96400022506714,5.96299982070923,5.95599985122681,5.92000007629395,5.90199995040894,5.87200021743774,5.84999990463257,5.83799982070923,5.83799982070923,5.82499980926514,5.82299995422363,5.82200002670288,5.81899976730347,5.80999994277954,5.75799989700317,5.71500015258789,5.62900018692017,5.62099981307983,5.61100006103516,5.56899976730347,5.52500009536743,5.5,5.49300003051758,5.47200012207031,5.42999982833862,5.39499998092651,5.33599996566772,5.32399988174438,5.31099987030029,5.29300022125244,5.27899980545044,5.27299976348877,5.26900005340576,5.26200008392334,5.25,5.23699998855591,5.2350001335144,5.23400020599365,5.23000001907349,5.22700023651123,5.22499990463257,5.19500017166138,5.18200016021729,5.18100023269653,5.17500019073486,5.15100002288818,5.07399988174438,5.07399988174438,5.04099988937378,5.01100015640259,5.00400018692017,4.96199989318848,4.95499992370605,4.8289999961853,4.80499982833862,4.77500009536743,4.7350001335144,4.71400022506714,4.70900011062622,4.69500017166138,4.69199991226196,4.64400005340576,4.60799980163574,4.57399988174438,4.55299997329712,4.55000019073486,4.54500007629395,4.53499984741211,4.51399993896484,4.49700021743774,4.46500015258789,4.46000003814697,4.44000005722046,4.37599992752075,4.31500005722046,4.29199981689453,4.29099988937378,4.28599977493286,4.28000020980835,4.19000005722046,4.17999982833862,4.16800022125244,4.13899993896484,4.11999988555908,4.09600019454956,4.08099985122681,4.03200006484985,4.02799987792969,3.97000002861023,3.93600010871887,3.875,3.80800008773804,3.79500007629395,3.79399991035461,3.76600003242493,3.65700006484985,3.64400005340576,3.6029999256134,3.59299993515015,3.59100008010864,3.53299999237061,3.50699996948242,3.49499988555908,3.47099995613098,3.46199989318848,3.34899997711182,2.90499997138977,2.69300007820129],"y":[155,154,153,152,151,150,149,148,147,146,145,144,143,142,141,140,139,138,137,136,135,134,133,132,131,130,129,128,127,126,125,124,123,122,121,120,119,118,117,116,115,114,113,112,111,110,109,108,107,106,105,104,103,102,101,100,99,98,97,96,95,94,93,92,91,90,89,88,87,86,85,84,83,82,81,80,79,78,77,76,75,74,73,72,71,70,69,68,67,66,65,64,63,62,61,60,59,58,57,56,55,54,53,52,51,50,49,48,47,46,45,44,43,42,41,40,39,38,37,36,35,34,33,32,31,30,29,28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],"text":["Happiness.Score: 7.537<br />reorder(Country, Happiness.Score): Norway","Happiness.Score: 7.522<br />reorder(Country, Happiness.Score): Denmark","Happiness.Score: 7.504<br />reorder(Country, Happiness.Score): Iceland","Happiness.Score: 7.494<br />reorder(Country, Happiness.Score): Switzerland","Happiness.Score: 7.469<br />reorder(Country, Happiness.Score): Finland","Happiness.Score: 7.377<br />reorder(Country, Happiness.Score): Netherlands","Happiness.Score: 7.316<br />reorder(Country, Happiness.Score): Canada","Happiness.Score: 7.314<br />reorder(Country, Happiness.Score): New Zealand","Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Sweden","Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Australia","Happiness.Score: 7.213<br />reorder(Country, Happiness.Score): Israel","Happiness.Score: 7.079<br />reorder(Country, Happiness.Score): Costa Rica","Happiness.Score: 7.006<br />reorder(Country, Happiness.Score): Austria","Happiness.Score: 6.993<br />reorder(Country, Happiness.Score): United States","Happiness.Score: 6.977<br />reorder(Country, Happiness.Score): Ireland","Happiness.Score: 6.951<br />reorder(Country, Happiness.Score): Germany","Happiness.Score: 6.891<br />reorder(Country, Happiness.Score): Belgium","Happiness.Score: 6.863<br />reorder(Country, Happiness.Score): Luxembourg","Happiness.Score: 6.714<br />reorder(Country, Happiness.Score): United Kingdom","Happiness.Score: 6.652<br />reorder(Country, Happiness.Score): Chile","Happiness.Score: 6.648<br />reorder(Country, Happiness.Score): United Arab Emirates","Happiness.Score: 6.635<br />reorder(Country, Happiness.Score): Brazil","Happiness.Score: 6.609<br />reorder(Country, Happiness.Score): Czech Republic","Happiness.Score: 6.599<br />reorder(Country, Happiness.Score): Argentina","Happiness.Score: 6.578<br />reorder(Country, Happiness.Score): Mexico","Happiness.Score: 6.572<br />reorder(Country, Happiness.Score): Singapore","Happiness.Score: 6.527<br />reorder(Country, Happiness.Score): Malta","Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Uruguay","Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Guatemala","Happiness.Score: 6.452<br />reorder(Country, Happiness.Score): Panama","Happiness.Score: 6.442<br />reorder(Country, Happiness.Score): France","Happiness.Score: 6.424<br />reorder(Country, Happiness.Score): Thailand","Happiness.Score: 6.422<br />reorder(Country, Happiness.Score): Taiwan Province of China","Happiness.Score: 6.403<br />reorder(Country, Happiness.Score): Spain","Happiness.Score: 6.375<br />reorder(Country, Happiness.Score): Qatar","Happiness.Score: 6.357<br />reorder(Country, Happiness.Score): Colombia","Happiness.Score: 6.344<br />reorder(Country, Happiness.Score): Saudi Arabia","Happiness.Score: 6.168<br />reorder(Country, Happiness.Score): Trinidad and Tobago","Happiness.Score: 6.105<br />reorder(Country, Happiness.Score): Kuwait","Happiness.Score: 6.098<br />reorder(Country, Happiness.Score): Slovakia","Happiness.Score: 6.087<br />reorder(Country, Happiness.Score): Bahrain","Happiness.Score: 6.084<br />reorder(Country, Happiness.Score): Malaysia","Happiness.Score: 6.071<br />reorder(Country, Happiness.Score): Nicaragua","Happiness.Score: 6.008<br />reorder(Country, Happiness.Score): Ecuador","Happiness.Score: 6.003<br />reorder(Country, Happiness.Score): El Salvador","Happiness.Score: 5.973<br />reorder(Country, Happiness.Score): Poland","Happiness.Score: 5.971<br />reorder(Country, Happiness.Score): Uzbekistan","Happiness.Score: 5.964<br />reorder(Country, Happiness.Score): Italy","Happiness.Score: 5.963<br />reorder(Country, Happiness.Score): Russia","Happiness.Score: 5.956<br />reorder(Country, Happiness.Score): Belize","Happiness.Score: 5.920<br />reorder(Country, Happiness.Score): Japan","Happiness.Score: 5.902<br />reorder(Country, Happiness.Score): Lithuania","Happiness.Score: 5.872<br />reorder(Country, Happiness.Score): Algeria","Happiness.Score: 5.850<br />reorder(Country, Happiness.Score): Latvia","Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): South Korea","Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): Moldova","Happiness.Score: 5.825<br />reorder(Country, Happiness.Score): Romania","Happiness.Score: 5.823<br />reorder(Country, Happiness.Score): Bolivia","Happiness.Score: 5.822<br />reorder(Country, Happiness.Score): Turkmenistan","Happiness.Score: 5.819<br />reorder(Country, Happiness.Score): Kazakhstan","Happiness.Score: 5.810<br />reorder(Country, Happiness.Score): North Cyprus","Happiness.Score: 5.758<br />reorder(Country, Happiness.Score): Slovenia","Happiness.Score: 5.715<br />reorder(Country, Happiness.Score): Peru","Happiness.Score: 5.629<br />reorder(Country, Happiness.Score): Mauritius","Happiness.Score: 5.621<br />reorder(Country, Happiness.Score): Cyprus","Happiness.Score: 5.611<br />reorder(Country, Happiness.Score): Estonia","Happiness.Score: 5.569<br />reorder(Country, Happiness.Score): Belarus","Happiness.Score: 5.525<br />reorder(Country, Happiness.Score): Libya","Happiness.Score: 5.500<br />reorder(Country, Happiness.Score): Turkey","Happiness.Score: 5.493<br />reorder(Country, Happiness.Score): Paraguay","Happiness.Score: 5.472<br />reorder(Country, Happiness.Score): Hong Kong S.A.R., China","Happiness.Score: 5.430<br />reorder(Country, Happiness.Score): Philippines","Happiness.Score: 5.395<br />reorder(Country, Happiness.Score): Serbia","Happiness.Score: 5.336<br />reorder(Country, Happiness.Score): Jordan","Happiness.Score: 5.324<br />reorder(Country, Happiness.Score): Hungary","Happiness.Score: 5.311<br />reorder(Country, Happiness.Score): Jamaica","Happiness.Score: 5.293<br />reorder(Country, Happiness.Score): Croatia","Happiness.Score: 5.279<br />reorder(Country, Happiness.Score): Kosovo","Happiness.Score: 5.273<br />reorder(Country, Happiness.Score): China","Happiness.Score: 5.269<br />reorder(Country, Happiness.Score): Pakistan","Happiness.Score: 5.262<br />reorder(Country, Happiness.Score): Indonesia","Happiness.Score: 5.250<br />reorder(Country, Happiness.Score): Venezuela","Happiness.Score: 5.237<br />reorder(Country, Happiness.Score): Montenegro","Happiness.Score: 5.235<br />reorder(Country, Happiness.Score): Morocco","Happiness.Score: 5.234<br />reorder(Country, Happiness.Score): Azerbaijan","Happiness.Score: 5.230<br />reorder(Country, Happiness.Score): Dominican Republic","Happiness.Score: 5.227<br />reorder(Country, Happiness.Score): Greece","Happiness.Score: 5.225<br />reorder(Country, Happiness.Score): Lebanon","Happiness.Score: 5.195<br />reorder(Country, Happiness.Score): Portugal","Happiness.Score: 5.182<br />reorder(Country, Happiness.Score): Bosnia and Herzegovina","Happiness.Score: 5.181<br />reorder(Country, Happiness.Score): Honduras","Happiness.Score: 5.175<br />reorder(Country, Happiness.Score): Macedonia","Happiness.Score: 5.151<br />reorder(Country, Happiness.Score): Somalia","Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Vietnam","Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Nigeria","Happiness.Score: 5.041<br />reorder(Country, Happiness.Score): Tajikistan","Happiness.Score: 5.011<br />reorder(Country, Happiness.Score): Bhutan","Happiness.Score: 5.004<br />reorder(Country, Happiness.Score): Kyrgyzstan","Happiness.Score: 4.962<br />reorder(Country, Happiness.Score): Nepal","Happiness.Score: 4.955<br />reorder(Country, Happiness.Score): Mongolia","Happiness.Score: 4.829<br />reorder(Country, Happiness.Score): South Africa","Happiness.Score: 4.805<br />reorder(Country, Happiness.Score): Tunisia","Happiness.Score: 4.775<br />reorder(Country, Happiness.Score): Palestinian Territories","Happiness.Score: 4.735<br />reorder(Country, Happiness.Score): Egypt","Happiness.Score: 4.714<br />reorder(Country, Happiness.Score): Bulgaria","Happiness.Score: 4.709<br />reorder(Country, Happiness.Score): Sierra Leone","Happiness.Score: 4.695<br />reorder(Country, Happiness.Score): Cameroon","Happiness.Score: 4.692<br />reorder(Country, Happiness.Score): Iran","Happiness.Score: 4.644<br />reorder(Country, Happiness.Score): Albania","Happiness.Score: 4.608<br />reorder(Country, Happiness.Score): Bangladesh","Happiness.Score: 4.574<br />reorder(Country, Happiness.Score): Namibia","Happiness.Score: 4.553<br />reorder(Country, Happiness.Score): Kenya","Happiness.Score: 4.550<br />reorder(Country, Happiness.Score): Mozambique","Happiness.Score: 4.545<br />reorder(Country, Happiness.Score): Myanmar","Happiness.Score: 4.535<br />reorder(Country, Happiness.Score): Senegal","Happiness.Score: 4.514<br />reorder(Country, Happiness.Score): Zambia","Happiness.Score: 4.497<br />reorder(Country, Happiness.Score): Iraq","Happiness.Score: 4.465<br />reorder(Country, Happiness.Score): Gabon","Happiness.Score: 4.460<br />reorder(Country, Happiness.Score): Ethiopia","Happiness.Score: 4.440<br />reorder(Country, Happiness.Score): Sri Lanka","Happiness.Score: 4.376<br />reorder(Country, Happiness.Score): Armenia","Happiness.Score: 4.315<br />reorder(Country, Happiness.Score): India","Happiness.Score: 4.292<br />reorder(Country, Happiness.Score): Mauritania","Happiness.Score: 4.291<br />reorder(Country, Happiness.Score): Congo (Brazzaville)","Happiness.Score: 4.286<br />reorder(Country, Happiness.Score): Georgia","Happiness.Score: 4.280<br />reorder(Country, Happiness.Score): Congo (Kinshasa)","Happiness.Score: 4.190<br />reorder(Country, Happiness.Score): Mali","Happiness.Score: 4.180<br />reorder(Country, Happiness.Score): Ivory Coast","Happiness.Score: 4.168<br />reorder(Country, Happiness.Score): Cambodia","Happiness.Score: 4.139<br />reorder(Country, Happiness.Score): Sudan","Happiness.Score: 4.120<br />reorder(Country, Happiness.Score): Ghana","Happiness.Score: 4.096<br />reorder(Country, Happiness.Score): Ukraine","Happiness.Score: 4.081<br />reorder(Country, Happiness.Score): Uganda","Happiness.Score: 4.032<br />reorder(Country, Happiness.Score): Burkina Faso","Happiness.Score: 4.028<br />reorder(Country, Happiness.Score): Niger","Happiness.Score: 3.970<br />reorder(Country, Happiness.Score): Malawi","Happiness.Score: 3.936<br />reorder(Country, Happiness.Score): Chad","Happiness.Score: 3.875<br />reorder(Country, Happiness.Score): Zimbabwe","Happiness.Score: 3.808<br />reorder(Country, Happiness.Score): Lesotho","Happiness.Score: 3.795<br />reorder(Country, Happiness.Score): Angola","Happiness.Score: 3.794<br />reorder(Country, Happiness.Score): Afghanistan","Happiness.Score: 3.766<br />reorder(Country, Happiness.Score): Botswana","Happiness.Score: 3.657<br />reorder(Country, Happiness.Score): Benin","Happiness.Score: 3.644<br />reorder(Country, Happiness.Score): Madagascar","Happiness.Score: 3.603<br />reorder(Country, Happiness.Score): Haiti","Happiness.Score: 3.593<br />reorder(Country, Happiness.Score): Yemen","Happiness.Score: 3.591<br />reorder(Country, Happiness.Score): South Sudan","Happiness.Score: 3.533<br />reorder(Country, Happiness.Score): Liberia","Happiness.Score: 3.507<br />reorder(Country, Happiness.Score): Guinea","Happiness.Score: 3.495<br />reorder(Country, Happiness.Score): Togo","Happiness.Score: 3.471<br />reorder(Country, Happiness.Score): Rwanda","Happiness.Score: 3.462<br />reorder(Country, Happiness.Score): Syria","Happiness.Score: 3.349<br />reorder(Country, Happiness.Score): Tanzania","Happiness.Score: 2.905<br />reorder(Country, Happiness.Score): Burundi","Happiness.Score: 2.693<br />reorder(Country, Happiness.Score): Central African Republic"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","opacity":0.5,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.53700017929077,0,null,7.52199983596802,0,null,7.50400018692017,0,null,7.49399995803833,0,null,7.4689998626709,0,null,7.3769998550415,0,null,7.31599998474121,0,null,7.31400012969971,0,null,7.28399991989136,0,null,7.28399991989136,0,null,7.21299982070923,0,null,7.0789999961853,0,null,7.00600004196167,0,null,6.99300003051758,0,null,6.97700023651123,0,null,6.95100021362305,0,null,6.89099979400635,0,null,6.86299991607666,0,null,6.71400022506714,0,null,6.65199995040894,0,null,6.64799976348877,0,null,6.63500022888184,0,null,6.60900020599365,0,null,6.59899997711182,0,null,6.57800006866455,0,null,6.57200002670288,0,null,6.52699995040894,0,null,6.4539999961853,0,null,6.4539999961853,0,null,6.4520001411438,0,null,6.44199991226196,0,null,6.42399978637695,0,null,6.42199993133545,0,null,6.40299987792969,0,null,6.375,0,null,6.35699987411499,0,null,6.3439998626709,0,null,6.16800022125244,0,null,6.10500001907349,0,null,6.09800004959106,0,null,6.08699989318848,0,null,6.08400011062622,0,null,6.07100009918213,0,null,6.00799989700317,0,null,6.00299978256226,0,null,5.97300004959106,0,null,5.97100019454956,0,null,5.96400022506714,0,null,5.96299982070923,0,null,5.95599985122681,0,null,5.92000007629395,0,null,5.90199995040894,0,null,5.87200021743774,0,null,5.84999990463257,0,null,5.83799982070923,0,null,5.83799982070923,0,null,5.82499980926514,0,null,5.82299995422363,0,null,5.82200002670288,0,null,5.81899976730347,0,null,5.80999994277954,0,null,5.75799989700317,0,null,5.71500015258789,0,null,5.62900018692017,0,null,5.62099981307983,0,null,5.61100006103516,0,null,5.56899976730347,0,null,5.52500009536743,0,null,5.5,0,null,5.49300003051758,0,null,5.47200012207031,0,null,5.42999982833862,0,null,5.39499998092651,0,null,5.33599996566772,0,null,5.32399988174438,0,null,5.31099987030029,0,null,5.29300022125244,0,null,5.27899980545044,0,null,5.27299976348877,0,null,5.26900005340576,0,null,5.26200008392334,0,null,5.25,0,null,5.23699998855591,0,null,5.2350001335144,0,null,5.23400020599365,0,null,5.23000001907349,0,null,5.22700023651123,0,null,5.22499990463257,0,null,5.19500017166138,0,null,5.18200016021729,0,null,5.18100023269653,0,null,5.17500019073486,0,null,5.15100002288818,0,null,5.07399988174438,0,null,5.07399988174438,0,null,5.04099988937378,0,null,5.01100015640259,0,null,5.00400018692017,0,null,4.96199989318848,0,null,4.95499992370605,0,null,4.8289999961853,0,null,4.80499982833862,0,null,4.77500009536743,0,null,4.7350001335144,0,null,4.71400022506714,0,null,4.70900011062622,0,null,4.69500017166138,0,null,4.69199991226196,0,null,4.64400005340576,0,null,4.60799980163574,0,null,4.57399988174438,0,null,4.55299997329712,0,null,4.55000019073486,0,null,4.54500007629395,0,null,4.53499984741211,0,null,4.51399993896484,0,null,4.49700021743774,0,null,4.46500015258789,0,null,4.46000003814697,0,null,4.44000005722046,0,null,4.37599992752075,0,null,4.31500005722046,0,null,4.29199981689453,0,null,4.29099988937378,0,null,4.28599977493286,0,null,4.28000020980835,0,null,4.19000005722046,0,null,4.17999982833862,0,null,4.16800022125244,0,null,4.13899993896484,0,null,4.11999988555908,0,null,4.09600019454956,0,null,4.08099985122681,0,null,4.03200006484985,0,null,4.02799987792969,0,null,3.97000002861023,0,null,3.93600010871887,0,null,3.875,0,null,3.80800008773804,0,null,3.79500007629395,0,null,3.79399991035461,0,null,3.76600003242493,0,null,3.65700006484985,0,null,3.64400005340576,0,null,3.6029999256134,0,null,3.59299993515015,0,null,3.59100008010864,0,null,3.53299999237061,0,null,3.50699996948242,0,null,3.49499988555908,0,null,3.47099995613098,0,null,3.46199989318848,0,null,3.34899997711182,0,null,2.90499997138977,0,null,2.69300007820129,0],"y":[155,155,null,154,154,null,153,153,null,152,152,null,151,151,null,150,150,null,149,149,null,148,148,null,147,147,null,146,146,null,145,145,null,144,144,null,143,143,null,142,142,null,141,141,null,140,140,null,139,139,null,138,138,null,137,137,null,136,136,null,135,135,null,134,134,null,133,133,null,132,132,null,131,131,null,130,130,null,129,129,null,128,128,null,127,127,null,126,126,null,125,125,null,124,124,null,123,123,null,122,122,null,121,121,null,120,120,null,119,119,null,118,118,null,117,117,null,116,116,null,115,115,null,114,114,null,113,113,null,112,112,null,111,111,null,110,110,null,109,109,null,108,108,null,107,107,null,106,106,null,105,105,null,104,104,null,103,103,null,102,102,null,101,101,null,100,100,null,99,99,null,98,98,null,97,97,null,96,96,null,95,95,null,94,94,null,93,93,null,92,92,null,91,91,null,90,90,null,89,89,null,88,88,null,87,87,null,86,86,null,85,85,null,84,84,null,83,83,null,82,82,null,81,81,null,80,80,null,79,79,null,78,78,null,77,77,null,76,76,null,75,75,null,74,74,null,73,73,null,72,72,null,71,71,null,70,70,null,69,69,null,68,68,null,67,67,null,66,66,null,65,65,null,64,64,null,63,63,null,62,62,null,61,61,null,60,60,null,59,59,null,58,58,null,57,57,null,56,56,null,55,55,null,54,54,null,53,53,null,52,52,null,51,51,null,50,50,null,49,49,null,48,48,null,47,47,null,46,46,null,45,45,null,44,44,null,43,43,null,42,42,null,41,41,null,40,40,null,39,39,null,38,38,null,37,37,null,36,36,null,35,35,null,34,34,null,33,33,null,32,32,null,31,31,null,30,30,null,29,29,null,28,28,null,27,27,null,26,26,null,25,25,null,24,24,null,23,23,null,22,22,null,21,21,null,20,20,null,19,19,null,18,18,null,17,17,null,16,16,null,15,15,null,14,14,null,13,13,null,12,12,null,11,11,null,10,10,null,9,9,null,8,8,null,7,7,null,6,6,null,5,5,null,4,4,null,3,3,null,2,2,null,1,1],"text":["reorder(Country, Happiness.Score): 155<br />Happiness.Score: 7.537<br />reorder(Country, Happiness.Score): Norway","reorder(Country, Happiness.Score): 155<br />Happiness.Score: 7.537<br />reorder(Country, Happiness.Score): Norway",null,"reorder(Country, Happiness.Score): 154<br />Happiness.Score: 7.522<br />reorder(Country, Happiness.Score): Denmark","reorder(Country, Happiness.Score): 154<br />Happiness.Score: 7.522<br />reorder(Country, Happiness.Score): Denmark",null,"reorder(Country, Happiness.Score): 153<br />Happiness.Score: 7.504<br />reorder(Country, Happiness.Score): Iceland","reorder(Country, Happiness.Score): 153<br />Happiness.Score: 7.504<br />reorder(Country, Happiness.Score): Iceland",null,"reorder(Country, Happiness.Score): 152<br />Happiness.Score: 7.494<br />reorder(Country, Happiness.Score): Switzerland","reorder(Country, Happiness.Score): 152<br />Happiness.Score: 7.494<br />reorder(Country, Happiness.Score): Switzerland",null,"reorder(Country, Happiness.Score): 151<br />Happiness.Score: 7.469<br />reorder(Country, Happiness.Score): Finland","reorder(Country, Happiness.Score): 151<br />Happiness.Score: 7.469<br />reorder(Country, Happiness.Score): Finland",null,"reorder(Country, Happiness.Score): 150<br />Happiness.Score: 7.377<br />reorder(Country, Happiness.Score): Netherlands","reorder(Country, Happiness.Score): 150<br />Happiness.Score: 7.377<br />reorder(Country, Happiness.Score): Netherlands",null,"reorder(Country, Happiness.Score): 149<br />Happiness.Score: 7.316<br />reorder(Country, Happiness.Score): Canada","reorder(Country, Happiness.Score): 149<br />Happiness.Score: 7.316<br />reorder(Country, Happiness.Score): Canada",null,"reorder(Country, Happiness.Score): 148<br />Happiness.Score: 7.314<br />reorder(Country, Happiness.Score): New Zealand","reorder(Country, Happiness.Score): 148<br />Happiness.Score: 7.314<br />reorder(Country, Happiness.Score): New Zealand",null,"reorder(Country, Happiness.Score): 147<br />Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Sweden","reorder(Country, Happiness.Score): 147<br />Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Sweden",null,"reorder(Country, Happiness.Score): 146<br />Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Australia","reorder(Country, Happiness.Score): 146<br />Happiness.Score: 7.284<br />reorder(Country, Happiness.Score): Australia",null,"reorder(Country, Happiness.Score): 145<br />Happiness.Score: 7.213<br />reorder(Country, Happiness.Score): Israel","reorder(Country, Happiness.Score): 145<br />Happiness.Score: 7.213<br />reorder(Country, Happiness.Score): Israel",null,"reorder(Country, Happiness.Score): 144<br />Happiness.Score: 7.079<br />reorder(Country, Happiness.Score): Costa Rica","reorder(Country, Happiness.Score): 144<br />Happiness.Score: 7.079<br />reorder(Country, Happiness.Score): Costa Rica",null,"reorder(Country, Happiness.Score): 143<br />Happiness.Score: 7.006<br />reorder(Country, Happiness.Score): Austria","reorder(Country, Happiness.Score): 143<br />Happiness.Score: 7.006<br />reorder(Country, Happiness.Score): Austria",null,"reorder(Country, Happiness.Score): 142<br />Happiness.Score: 6.993<br />reorder(Country, Happiness.Score): United States","reorder(Country, Happiness.Score): 142<br />Happiness.Score: 6.993<br />reorder(Country, Happiness.Score): United States",null,"reorder(Country, Happiness.Score): 141<br />Happiness.Score: 6.977<br />reorder(Country, Happiness.Score): Ireland","reorder(Country, Happiness.Score): 141<br />Happiness.Score: 6.977<br />reorder(Country, Happiness.Score): Ireland",null,"reorder(Country, Happiness.Score): 140<br />Happiness.Score: 6.951<br />reorder(Country, Happiness.Score): Germany","reorder(Country, Happiness.Score): 140<br />Happiness.Score: 6.951<br />reorder(Country, Happiness.Score): Germany",null,"reorder(Country, Happiness.Score): 139<br />Happiness.Score: 6.891<br />reorder(Country, Happiness.Score): Belgium","reorder(Country, Happiness.Score): 139<br />Happiness.Score: 6.891<br />reorder(Country, Happiness.Score): Belgium",null,"reorder(Country, Happiness.Score): 138<br />Happiness.Score: 6.863<br />reorder(Country, Happiness.Score): Luxembourg","reorder(Country, Happiness.Score): 138<br />Happiness.Score: 6.863<br />reorder(Country, Happiness.Score): Luxembourg",null,"reorder(Country, Happiness.Score): 137<br />Happiness.Score: 6.714<br />reorder(Country, Happiness.Score): United Kingdom","reorder(Country, Happiness.Score): 137<br />Happiness.Score: 6.714<br />reorder(Country, Happiness.Score): United Kingdom",null,"reorder(Country, Happiness.Score): 136<br />Happiness.Score: 6.652<br />reorder(Country, Happiness.Score): Chile","reorder(Country, Happiness.Score): 136<br />Happiness.Score: 6.652<br />reorder(Country, Happiness.Score): Chile",null,"reorder(Country, Happiness.Score): 135<br />Happiness.Score: 6.648<br />reorder(Country, Happiness.Score): United Arab Emirates","reorder(Country, Happiness.Score): 135<br />Happiness.Score: 6.648<br />reorder(Country, Happiness.Score): United Arab Emirates",null,"reorder(Country, Happiness.Score): 134<br />Happiness.Score: 6.635<br />reorder(Country, Happiness.Score): Brazil","reorder(Country, Happiness.Score): 134<br />Happiness.Score: 6.635<br />reorder(Country, Happiness.Score): Brazil",null,"reorder(Country, Happiness.Score): 133<br />Happiness.Score: 6.609<br />reorder(Country, Happiness.Score): Czech Republic","reorder(Country, Happiness.Score): 133<br />Happiness.Score: 6.609<br />reorder(Country, Happiness.Score): Czech Republic",null,"reorder(Country, Happiness.Score): 132<br />Happiness.Score: 6.599<br />reorder(Country, Happiness.Score): Argentina","reorder(Country, Happiness.Score): 132<br />Happiness.Score: 6.599<br />reorder(Country, Happiness.Score): Argentina",null,"reorder(Country, Happiness.Score): 131<br />Happiness.Score: 6.578<br />reorder(Country, Happiness.Score): Mexico","reorder(Country, Happiness.Score): 131<br />Happiness.Score: 6.578<br />reorder(Country, Happiness.Score): Mexico",null,"reorder(Country, Happiness.Score): 130<br />Happiness.Score: 6.572<br />reorder(Country, Happiness.Score): Singapore","reorder(Country, Happiness.Score): 130<br />Happiness.Score: 6.572<br />reorder(Country, Happiness.Score): Singapore",null,"reorder(Country, Happiness.Score): 129<br />Happiness.Score: 6.527<br />reorder(Country, Happiness.Score): Malta","reorder(Country, Happiness.Score): 129<br />Happiness.Score: 6.527<br />reorder(Country, Happiness.Score): Malta",null,"reorder(Country, Happiness.Score): 128<br />Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Uruguay","reorder(Country, Happiness.Score): 128<br />Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Uruguay",null,"reorder(Country, Happiness.Score): 127<br />Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Guatemala","reorder(Country, Happiness.Score): 127<br />Happiness.Score: 6.454<br />reorder(Country, Happiness.Score): Guatemala",null,"reorder(Country, Happiness.Score): 126<br />Happiness.Score: 6.452<br />reorder(Country, Happiness.Score): Panama","reorder(Country, Happiness.Score): 126<br />Happiness.Score: 6.452<br />reorder(Country, Happiness.Score): Panama",null,"reorder(Country, Happiness.Score): 125<br />Happiness.Score: 6.442<br />reorder(Country, Happiness.Score): France","reorder(Country, Happiness.Score): 125<br />Happiness.Score: 6.442<br />reorder(Country, Happiness.Score): France",null,"reorder(Country, Happiness.Score): 124<br />Happiness.Score: 6.424<br />reorder(Country, Happiness.Score): Thailand","reorder(Country, Happiness.Score): 124<br />Happiness.Score: 6.424<br />reorder(Country, Happiness.Score): Thailand",null,"reorder(Country, Happiness.Score): 123<br />Happiness.Score: 6.422<br />reorder(Country, Happiness.Score): Taiwan Province of China","reorder(Country, Happiness.Score): 123<br />Happiness.Score: 6.422<br />reorder(Country, Happiness.Score): Taiwan Province of China",null,"reorder(Country, Happiness.Score): 122<br />Happiness.Score: 6.403<br />reorder(Country, Happiness.Score): Spain","reorder(Country, Happiness.Score): 122<br />Happiness.Score: 6.403<br />reorder(Country, Happiness.Score): Spain",null,"reorder(Country, Happiness.Score): 121<br />Happiness.Score: 6.375<br />reorder(Country, Happiness.Score): Qatar","reorder(Country, Happiness.Score): 121<br />Happiness.Score: 6.375<br />reorder(Country, Happiness.Score): Qatar",null,"reorder(Country, Happiness.Score): 120<br />Happiness.Score: 6.357<br />reorder(Country, Happiness.Score): Colombia","reorder(Country, Happiness.Score): 120<br />Happiness.Score: 6.357<br />reorder(Country, Happiness.Score): Colombia",null,"reorder(Country, Happiness.Score): 119<br />Happiness.Score: 6.344<br />reorder(Country, Happiness.Score): Saudi Arabia","reorder(Country, Happiness.Score): 119<br />Happiness.Score: 6.344<br />reorder(Country, Happiness.Score): Saudi Arabia",null,"reorder(Country, Happiness.Score): 118<br />Happiness.Score: 6.168<br />reorder(Country, Happiness.Score): Trinidad and Tobago","reorder(Country, Happiness.Score): 118<br />Happiness.Score: 6.168<br />reorder(Country, Happiness.Score): Trinidad and Tobago",null,"reorder(Country, Happiness.Score): 117<br />Happiness.Score: 6.105<br />reorder(Country, Happiness.Score): Kuwait","reorder(Country, Happiness.Score): 117<br />Happiness.Score: 6.105<br />reorder(Country, Happiness.Score): Kuwait",null,"reorder(Country, Happiness.Score): 116<br />Happiness.Score: 6.098<br />reorder(Country, Happiness.Score): Slovakia","reorder(Country, Happiness.Score): 116<br />Happiness.Score: 6.098<br />reorder(Country, Happiness.Score): Slovakia",null,"reorder(Country, Happiness.Score): 115<br />Happiness.Score: 6.087<br />reorder(Country, Happiness.Score): Bahrain","reorder(Country, Happiness.Score): 115<br />Happiness.Score: 6.087<br />reorder(Country, Happiness.Score): Bahrain",null,"reorder(Country, Happiness.Score): 114<br />Happiness.Score: 6.084<br />reorder(Country, Happiness.Score): Malaysia","reorder(Country, Happiness.Score): 114<br />Happiness.Score: 6.084<br />reorder(Country, Happiness.Score): Malaysia",null,"reorder(Country, Happiness.Score): 113<br />Happiness.Score: 6.071<br />reorder(Country, Happiness.Score): Nicaragua","reorder(Country, Happiness.Score): 113<br />Happiness.Score: 6.071<br />reorder(Country, Happiness.Score): Nicaragua",null,"reorder(Country, Happiness.Score): 112<br />Happiness.Score: 6.008<br />reorder(Country, Happiness.Score): Ecuador","reorder(Country, Happiness.Score): 112<br />Happiness.Score: 6.008<br />reorder(Country, Happiness.Score): Ecuador",null,"reorder(Country, Happiness.Score): 111<br />Happiness.Score: 6.003<br />reorder(Country, Happiness.Score): El Salvador","reorder(Country, Happiness.Score): 111<br />Happiness.Score: 6.003<br />reorder(Country, Happiness.Score): El Salvador",null,"reorder(Country, Happiness.Score): 110<br />Happiness.Score: 5.973<br />reorder(Country, Happiness.Score): Poland","reorder(Country, Happiness.Score): 110<br />Happiness.Score: 5.973<br />reorder(Country, Happiness.Score): Poland",null,"reorder(Country, Happiness.Score): 109<br />Happiness.Score: 5.971<br />reorder(Country, Happiness.Score): Uzbekistan","reorder(Country, Happiness.Score): 109<br />Happiness.Score: 5.971<br />reorder(Country, Happiness.Score): Uzbekistan",null,"reorder(Country, Happiness.Score): 108<br />Happiness.Score: 5.964<br />reorder(Country, Happiness.Score): Italy","reorder(Country, Happiness.Score): 108<br />Happiness.Score: 5.964<br />reorder(Country, Happiness.Score): Italy",null,"reorder(Country, Happiness.Score): 107<br />Happiness.Score: 5.963<br />reorder(Country, Happiness.Score): Russia","reorder(Country, Happiness.Score): 107<br />Happiness.Score: 5.963<br />reorder(Country, Happiness.Score): Russia",null,"reorder(Country, Happiness.Score): 106<br />Happiness.Score: 5.956<br />reorder(Country, Happiness.Score): Belize","reorder(Country, Happiness.Score): 106<br />Happiness.Score: 5.956<br />reorder(Country, Happiness.Score): Belize",null,"reorder(Country, Happiness.Score): 105<br />Happiness.Score: 5.920<br />reorder(Country, Happiness.Score): Japan","reorder(Country, Happiness.Score): 105<br />Happiness.Score: 5.920<br />reorder(Country, Happiness.Score): Japan",null,"reorder(Country, Happiness.Score): 104<br />Happiness.Score: 5.902<br />reorder(Country, Happiness.Score): Lithuania","reorder(Country, Happiness.Score): 104<br />Happiness.Score: 5.902<br />reorder(Country, Happiness.Score): Lithuania",null,"reorder(Country, Happiness.Score): 103<br />Happiness.Score: 5.872<br />reorder(Country, Happiness.Score): Algeria","reorder(Country, Happiness.Score): 103<br />Happiness.Score: 5.872<br />reorder(Country, Happiness.Score): Algeria",null,"reorder(Country, Happiness.Score): 102<br />Happiness.Score: 5.850<br />reorder(Country, Happiness.Score): Latvia","reorder(Country, Happiness.Score): 102<br />Happiness.Score: 5.850<br />reorder(Country, Happiness.Score): Latvia",null,"reorder(Country, Happiness.Score): 101<br />Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): South Korea","reorder(Country, Happiness.Score): 101<br />Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): South Korea",null,"reorder(Country, Happiness.Score): 100<br />Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): Moldova","reorder(Country, Happiness.Score): 100<br />Happiness.Score: 5.838<br />reorder(Country, Happiness.Score): Moldova",null,"reorder(Country, Happiness.Score):  99<br />Happiness.Score: 5.825<br />reorder(Country, Happiness.Score): Romania","reorder(Country, Happiness.Score):  99<br />Happiness.Score: 5.825<br />reorder(Country, Happiness.Score): Romania",null,"reorder(Country, Happiness.Score):  98<br />Happiness.Score: 5.823<br />reorder(Country, Happiness.Score): Bolivia","reorder(Country, Happiness.Score):  98<br />Happiness.Score: 5.823<br />reorder(Country, Happiness.Score): Bolivia",null,"reorder(Country, Happiness.Score):  97<br />Happiness.Score: 5.822<br />reorder(Country, Happiness.Score): Turkmenistan","reorder(Country, Happiness.Score):  97<br />Happiness.Score: 5.822<br />reorder(Country, Happiness.Score): Turkmenistan",null,"reorder(Country, Happiness.Score):  96<br />Happiness.Score: 5.819<br />reorder(Country, Happiness.Score): Kazakhstan","reorder(Country, Happiness.Score):  96<br />Happiness.Score: 5.819<br />reorder(Country, Happiness.Score): Kazakhstan",null,"reorder(Country, Happiness.Score):  95<br />Happiness.Score: 5.810<br />reorder(Country, Happiness.Score): North Cyprus","reorder(Country, Happiness.Score):  95<br />Happiness.Score: 5.810<br />reorder(Country, Happiness.Score): North Cyprus",null,"reorder(Country, Happiness.Score):  94<br />Happiness.Score: 5.758<br />reorder(Country, Happiness.Score): Slovenia","reorder(Country, Happiness.Score):  94<br />Happiness.Score: 5.758<br />reorder(Country, Happiness.Score): Slovenia",null,"reorder(Country, Happiness.Score):  93<br />Happiness.Score: 5.715<br />reorder(Country, Happiness.Score): Peru","reorder(Country, Happiness.Score):  93<br />Happiness.Score: 5.715<br />reorder(Country, Happiness.Score): Peru",null,"reorder(Country, Happiness.Score):  92<br />Happiness.Score: 5.629<br />reorder(Country, Happiness.Score): Mauritius","reorder(Country, Happiness.Score):  92<br />Happiness.Score: 5.629<br />reorder(Country, Happiness.Score): Mauritius",null,"reorder(Country, Happiness.Score):  91<br />Happiness.Score: 5.621<br />reorder(Country, Happiness.Score): Cyprus","reorder(Country, Happiness.Score):  91<br />Happiness.Score: 5.621<br />reorder(Country, Happiness.Score): Cyprus",null,"reorder(Country, Happiness.Score):  90<br />Happiness.Score: 5.611<br />reorder(Country, Happiness.Score): Estonia","reorder(Country, Happiness.Score):  90<br />Happiness.Score: 5.611<br />reorder(Country, Happiness.Score): Estonia",null,"reorder(Country, Happiness.Score):  89<br />Happiness.Score: 5.569<br />reorder(Country, Happiness.Score): Belarus","reorder(Country, Happiness.Score):  89<br />Happiness.Score: 5.569<br />reorder(Country, Happiness.Score): Belarus",null,"reorder(Country, Happiness.Score):  88<br />Happiness.Score: 5.525<br />reorder(Country, Happiness.Score): Libya","reorder(Country, Happiness.Score):  88<br />Happiness.Score: 5.525<br />reorder(Country, Happiness.Score): Libya",null,"reorder(Country, Happiness.Score):  87<br />Happiness.Score: 5.500<br />reorder(Country, Happiness.Score): Turkey","reorder(Country, Happiness.Score):  87<br />Happiness.Score: 5.500<br />reorder(Country, Happiness.Score): Turkey",null,"reorder(Country, Happiness.Score):  86<br />Happiness.Score: 5.493<br />reorder(Country, Happiness.Score): Paraguay","reorder(Country, Happiness.Score):  86<br />Happiness.Score: 5.493<br />reorder(Country, Happiness.Score): Paraguay",null,"reorder(Country, Happiness.Score):  85<br />Happiness.Score: 5.472<br />reorder(Country, Happiness.Score): Hong Kong S.A.R., China","reorder(Country, Happiness.Score):  85<br />Happiness.Score: 5.472<br />reorder(Country, Happiness.Score): Hong Kong S.A.R., China",null,"reorder(Country, Happiness.Score):  84<br />Happiness.Score: 5.430<br />reorder(Country, Happiness.Score): Philippines","reorder(Country, Happiness.Score):  84<br />Happiness.Score: 5.430<br />reorder(Country, Happiness.Score): Philippines",null,"reorder(Country, Happiness.Score):  83<br />Happiness.Score: 5.395<br />reorder(Country, Happiness.Score): Serbia","reorder(Country, Happiness.Score):  83<br />Happiness.Score: 5.395<br />reorder(Country, Happiness.Score): Serbia",null,"reorder(Country, Happiness.Score):  82<br />Happiness.Score: 5.336<br />reorder(Country, Happiness.Score): Jordan","reorder(Country, Happiness.Score):  82<br />Happiness.Score: 5.336<br />reorder(Country, Happiness.Score): Jordan",null,"reorder(Country, Happiness.Score):  81<br />Happiness.Score: 5.324<br />reorder(Country, Happiness.Score): Hungary","reorder(Country, Happiness.Score):  81<br />Happiness.Score: 5.324<br />reorder(Country, Happiness.Score): Hungary",null,"reorder(Country, Happiness.Score):  80<br />Happiness.Score: 5.311<br />reorder(Country, Happiness.Score): Jamaica","reorder(Country, Happiness.Score):  80<br />Happiness.Score: 5.311<br />reorder(Country, Happiness.Score): Jamaica",null,"reorder(Country, Happiness.Score):  79<br />Happiness.Score: 5.293<br />reorder(Country, Happiness.Score): Croatia","reorder(Country, Happiness.Score):  79<br />Happiness.Score: 5.293<br />reorder(Country, Happiness.Score): Croatia",null,"reorder(Country, Happiness.Score):  78<br />Happiness.Score: 5.279<br />reorder(Country, Happiness.Score): Kosovo","reorder(Country, Happiness.Score):  78<br />Happiness.Score: 5.279<br />reorder(Country, Happiness.Score): Kosovo",null,"reorder(Country, Happiness.Score):  77<br />Happiness.Score: 5.273<br />reorder(Country, Happiness.Score): China","reorder(Country, Happiness.Score):  77<br />Happiness.Score: 5.273<br />reorder(Country, Happiness.Score): China",null,"reorder(Country, Happiness.Score):  76<br />Happiness.Score: 5.269<br />reorder(Country, Happiness.Score): Pakistan","reorder(Country, Happiness.Score):  76<br />Happiness.Score: 5.269<br />reorder(Country, Happiness.Score): Pakistan",null,"reorder(Country, Happiness.Score):  75<br />Happiness.Score: 5.262<br />reorder(Country, Happiness.Score): Indonesia","reorder(Country, Happiness.Score):  75<br />Happiness.Score: 5.262<br />reorder(Country, Happiness.Score): Indonesia",null,"reorder(Country, Happiness.Score):  74<br />Happiness.Score: 5.250<br />reorder(Country, Happiness.Score): Venezuela","reorder(Country, Happiness.Score):  74<br />Happiness.Score: 5.250<br />reorder(Country, Happiness.Score): Venezuela",null,"reorder(Country, Happiness.Score):  73<br />Happiness.Score: 5.237<br />reorder(Country, Happiness.Score): Montenegro","reorder(Country, Happiness.Score):  73<br />Happiness.Score: 5.237<br />reorder(Country, Happiness.Score): Montenegro",null,"reorder(Country, Happiness.Score):  72<br />Happiness.Score: 5.235<br />reorder(Country, Happiness.Score): Morocco","reorder(Country, Happiness.Score):  72<br />Happiness.Score: 5.235<br />reorder(Country, Happiness.Score): Morocco",null,"reorder(Country, Happiness.Score):  71<br />Happiness.Score: 5.234<br />reorder(Country, Happiness.Score): Azerbaijan","reorder(Country, Happiness.Score):  71<br />Happiness.Score: 5.234<br />reorder(Country, Happiness.Score): Azerbaijan",null,"reorder(Country, Happiness.Score):  70<br />Happiness.Score: 5.230<br />reorder(Country, Happiness.Score): Dominican Republic","reorder(Country, Happiness.Score):  70<br />Happiness.Score: 5.230<br />reorder(Country, Happiness.Score): Dominican Republic",null,"reorder(Country, Happiness.Score):  69<br />Happiness.Score: 5.227<br />reorder(Country, Happiness.Score): Greece","reorder(Country, Happiness.Score):  69<br />Happiness.Score: 5.227<br />reorder(Country, Happiness.Score): Greece",null,"reorder(Country, Happiness.Score):  68<br />Happiness.Score: 5.225<br />reorder(Country, Happiness.Score): Lebanon","reorder(Country, Happiness.Score):  68<br />Happiness.Score: 5.225<br />reorder(Country, Happiness.Score): Lebanon",null,"reorder(Country, Happiness.Score):  67<br />Happiness.Score: 5.195<br />reorder(Country, Happiness.Score): Portugal","reorder(Country, Happiness.Score):  67<br />Happiness.Score: 5.195<br />reorder(Country, Happiness.Score): Portugal",null,"reorder(Country, Happiness.Score):  66<br />Happiness.Score: 5.182<br />reorder(Country, Happiness.Score): Bosnia and Herzegovina","reorder(Country, Happiness.Score):  66<br />Happiness.Score: 5.182<br />reorder(Country, Happiness.Score): Bosnia and Herzegovina",null,"reorder(Country, Happiness.Score):  65<br />Happiness.Score: 5.181<br />reorder(Country, Happiness.Score): Honduras","reorder(Country, Happiness.Score):  65<br />Happiness.Score: 5.181<br />reorder(Country, Happiness.Score): Honduras",null,"reorder(Country, Happiness.Score):  64<br />Happiness.Score: 5.175<br />reorder(Country, Happiness.Score): Macedonia","reorder(Country, Happiness.Score):  64<br />Happiness.Score: 5.175<br />reorder(Country, Happiness.Score): Macedonia",null,"reorder(Country, Happiness.Score):  63<br />Happiness.Score: 5.151<br />reorder(Country, Happiness.Score): Somalia","reorder(Country, Happiness.Score):  63<br />Happiness.Score: 5.151<br />reorder(Country, Happiness.Score): Somalia",null,"reorder(Country, Happiness.Score):  62<br />Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Vietnam","reorder(Country, Happiness.Score):  62<br />Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Vietnam",null,"reorder(Country, Happiness.Score):  61<br />Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Nigeria","reorder(Country, Happiness.Score):  61<br />Happiness.Score: 5.074<br />reorder(Country, Happiness.Score): Nigeria",null,"reorder(Country, Happiness.Score):  60<br />Happiness.Score: 5.041<br />reorder(Country, Happiness.Score): Tajikistan","reorder(Country, Happiness.Score):  60<br />Happiness.Score: 5.041<br />reorder(Country, Happiness.Score): Tajikistan",null,"reorder(Country, Happiness.Score):  59<br />Happiness.Score: 5.011<br />reorder(Country, Happiness.Score): Bhutan","reorder(Country, Happiness.Score):  59<br />Happiness.Score: 5.011<br />reorder(Country, Happiness.Score): Bhutan",null,"reorder(Country, Happiness.Score):  58<br />Happiness.Score: 5.004<br />reorder(Country, Happiness.Score): Kyrgyzstan","reorder(Country, Happiness.Score):  58<br />Happiness.Score: 5.004<br />reorder(Country, Happiness.Score): Kyrgyzstan",null,"reorder(Country, Happiness.Score):  57<br />Happiness.Score: 4.962<br />reorder(Country, Happiness.Score): Nepal","reorder(Country, Happiness.Score):  57<br />Happiness.Score: 4.962<br />reorder(Country, Happiness.Score): Nepal",null,"reorder(Country, Happiness.Score):  56<br />Happiness.Score: 4.955<br />reorder(Country, Happiness.Score): Mongolia","reorder(Country, Happiness.Score):  56<br />Happiness.Score: 4.955<br />reorder(Country, Happiness.Score): Mongolia",null,"reorder(Country, Happiness.Score):  55<br />Happiness.Score: 4.829<br />reorder(Country, Happiness.Score): South Africa","reorder(Country, Happiness.Score):  55<br />Happiness.Score: 4.829<br />reorder(Country, Happiness.Score): South Africa",null,"reorder(Country, Happiness.Score):  54<br />Happiness.Score: 4.805<br />reorder(Country, Happiness.Score): Tunisia","reorder(Country, Happiness.Score):  54<br />Happiness.Score: 4.805<br />reorder(Country, Happiness.Score): Tunisia",null,"reorder(Country, Happiness.Score):  53<br />Happiness.Score: 4.775<br />reorder(Country, Happiness.Score): Palestinian Territories","reorder(Country, Happiness.Score):  53<br />Happiness.Score: 4.775<br />reorder(Country, Happiness.Score): Palestinian Territories",null,"reorder(Country, Happiness.Score):  52<br />Happiness.Score: 4.735<br />reorder(Country, Happiness.Score): Egypt","reorder(Country, Happiness.Score):  52<br />Happiness.Score: 4.735<br />reorder(Country, Happiness.Score): Egypt",null,"reorder(Country, Happiness.Score):  51<br />Happiness.Score: 4.714<br />reorder(Country, Happiness.Score): Bulgaria","reorder(Country, Happiness.Score):  51<br />Happiness.Score: 4.714<br />reorder(Country, Happiness.Score): Bulgaria",null,"reorder(Country, Happiness.Score):  50<br />Happiness.Score: 4.709<br />reorder(Country, Happiness.Score): Sierra Leone","reorder(Country, Happiness.Score):  50<br />Happiness.Score: 4.709<br />reorder(Country, Happiness.Score): Sierra Leone",null,"reorder(Country, Happiness.Score):  49<br />Happiness.Score: 4.695<br />reorder(Country, Happiness.Score): Cameroon","reorder(Country, Happiness.Score):  49<br />Happiness.Score: 4.695<br />reorder(Country, Happiness.Score): Cameroon",null,"reorder(Country, Happiness.Score):  48<br />Happiness.Score: 4.692<br />reorder(Country, Happiness.Score): Iran","reorder(Country, Happiness.Score):  48<br />Happiness.Score: 4.692<br />reorder(Country, Happiness.Score): Iran",null,"reorder(Country, Happiness.Score):  47<br />Happiness.Score: 4.644<br />reorder(Country, Happiness.Score): Albania","reorder(Country, Happiness.Score):  47<br />Happiness.Score: 4.644<br />reorder(Country, Happiness.Score): Albania",null,"reorder(Country, Happiness.Score):  46<br />Happiness.Score: 4.608<br />reorder(Country, Happiness.Score): Bangladesh","reorder(Country, Happiness.Score):  46<br />Happiness.Score: 4.608<br />reorder(Country, Happiness.Score): Bangladesh",null,"reorder(Country, Happiness.Score):  45<br />Happiness.Score: 4.574<br />reorder(Country, Happiness.Score): Namibia","reorder(Country, Happiness.Score):  45<br />Happiness.Score: 4.574<br />reorder(Country, Happiness.Score): Namibia",null,"reorder(Country, Happiness.Score):  44<br />Happiness.Score: 4.553<br />reorder(Country, Happiness.Score): Kenya","reorder(Country, Happiness.Score):  44<br />Happiness.Score: 4.553<br />reorder(Country, Happiness.Score): Kenya",null,"reorder(Country, Happiness.Score):  43<br />Happiness.Score: 4.550<br />reorder(Country, Happiness.Score): Mozambique","reorder(Country, Happiness.Score):  43<br />Happiness.Score: 4.550<br />reorder(Country, Happiness.Score): Mozambique",null,"reorder(Country, Happiness.Score):  42<br />Happiness.Score: 4.545<br />reorder(Country, Happiness.Score): Myanmar","reorder(Country, Happiness.Score):  42<br />Happiness.Score: 4.545<br />reorder(Country, Happiness.Score): Myanmar",null,"reorder(Country, Happiness.Score):  41<br />Happiness.Score: 4.535<br />reorder(Country, Happiness.Score): Senegal","reorder(Country, Happiness.Score):  41<br />Happiness.Score: 4.535<br />reorder(Country, Happiness.Score): Senegal",null,"reorder(Country, Happiness.Score):  40<br />Happiness.Score: 4.514<br />reorder(Country, Happiness.Score): Zambia","reorder(Country, Happiness.Score):  40<br />Happiness.Score: 4.514<br />reorder(Country, Happiness.Score): Zambia",null,"reorder(Country, Happiness.Score):  39<br />Happiness.Score: 4.497<br />reorder(Country, Happiness.Score): Iraq","reorder(Country, Happiness.Score):  39<br />Happiness.Score: 4.497<br />reorder(Country, Happiness.Score): Iraq",null,"reorder(Country, Happiness.Score):  38<br />Happiness.Score: 4.465<br />reorder(Country, Happiness.Score): Gabon","reorder(Country, Happiness.Score):  38<br />Happiness.Score: 4.465<br />reorder(Country, Happiness.Score): Gabon",null,"reorder(Country, Happiness.Score):  37<br />Happiness.Score: 4.460<br />reorder(Country, Happiness.Score): Ethiopia","reorder(Country, Happiness.Score):  37<br />Happiness.Score: 4.460<br />reorder(Country, Happiness.Score): Ethiopia",null,"reorder(Country, Happiness.Score):  36<br />Happiness.Score: 4.440<br />reorder(Country, Happiness.Score): Sri Lanka","reorder(Country, Happiness.Score):  36<br />Happiness.Score: 4.440<br />reorder(Country, Happiness.Score): Sri Lanka",null,"reorder(Country, Happiness.Score):  35<br />Happiness.Score: 4.376<br />reorder(Country, Happiness.Score): Armenia","reorder(Country, Happiness.Score):  35<br />Happiness.Score: 4.376<br />reorder(Country, Happiness.Score): Armenia",null,"reorder(Country, Happiness.Score):  34<br />Happiness.Score: 4.315<br />reorder(Country, Happiness.Score): India","reorder(Country, Happiness.Score):  34<br />Happiness.Score: 4.315<br />reorder(Country, Happiness.Score): India",null,"reorder(Country, Happiness.Score):  33<br />Happiness.Score: 4.292<br />reorder(Country, Happiness.Score): Mauritania","reorder(Country, Happiness.Score):  33<br />Happiness.Score: 4.292<br />reorder(Country, Happiness.Score): Mauritania",null,"reorder(Country, Happiness.Score):  32<br />Happiness.Score: 4.291<br />reorder(Country, Happiness.Score): Congo (Brazzaville)","reorder(Country, Happiness.Score):  32<br />Happiness.Score: 4.291<br />reorder(Country, Happiness.Score): Congo (Brazzaville)",null,"reorder(Country, Happiness.Score):  31<br />Happiness.Score: 4.286<br />reorder(Country, Happiness.Score): Georgia","reorder(Country, Happiness.Score):  31<br />Happiness.Score: 4.286<br />reorder(Country, Happiness.Score): Georgia",null,"reorder(Country, Happiness.Score):  30<br />Happiness.Score: 4.280<br />reorder(Country, Happiness.Score): Congo (Kinshasa)","reorder(Country, Happiness.Score):  30<br />Happiness.Score: 4.280<br />reorder(Country, Happiness.Score): Congo (Kinshasa)",null,"reorder(Country, Happiness.Score):  29<br />Happiness.Score: 4.190<br />reorder(Country, Happiness.Score): Mali","reorder(Country, Happiness.Score):  29<br />Happiness.Score: 4.190<br />reorder(Country, Happiness.Score): Mali",null,"reorder(Country, Happiness.Score):  28<br />Happiness.Score: 4.180<br />reorder(Country, Happiness.Score): Ivory Coast","reorder(Country, Happiness.Score):  28<br />Happiness.Score: 4.180<br />reorder(Country, Happiness.Score): Ivory Coast",null,"reorder(Country, Happiness.Score):  27<br />Happiness.Score: 4.168<br />reorder(Country, Happiness.Score): Cambodia","reorder(Country, Happiness.Score):  27<br />Happiness.Score: 4.168<br />reorder(Country, Happiness.Score): Cambodia",null,"reorder(Country, Happiness.Score):  26<br />Happiness.Score: 4.139<br />reorder(Country, Happiness.Score): Sudan","reorder(Country, Happiness.Score):  26<br />Happiness.Score: 4.139<br />reorder(Country, Happiness.Score): Sudan",null,"reorder(Country, Happiness.Score):  25<br />Happiness.Score: 4.120<br />reorder(Country, Happiness.Score): Ghana","reorder(Country, Happiness.Score):  25<br />Happiness.Score: 4.120<br />reorder(Country, Happiness.Score): Ghana",null,"reorder(Country, Happiness.Score):  24<br />Happiness.Score: 4.096<br />reorder(Country, Happiness.Score): Ukraine","reorder(Country, Happiness.Score):  24<br />Happiness.Score: 4.096<br />reorder(Country, Happiness.Score): Ukraine",null,"reorder(Country, Happiness.Score):  23<br />Happiness.Score: 4.081<br />reorder(Country, Happiness.Score): Uganda","reorder(Country, Happiness.Score):  23<br />Happiness.Score: 4.081<br />reorder(Country, Happiness.Score): Uganda",null,"reorder(Country, Happiness.Score):  22<br />Happiness.Score: 4.032<br />reorder(Country, Happiness.Score): Burkina Faso","reorder(Country, Happiness.Score):  22<br />Happiness.Score: 4.032<br />reorder(Country, Happiness.Score): Burkina Faso",null,"reorder(Country, Happiness.Score):  21<br />Happiness.Score: 4.028<br />reorder(Country, Happiness.Score): Niger","reorder(Country, Happiness.Score):  21<br />Happiness.Score: 4.028<br />reorder(Country, Happiness.Score): Niger",null,"reorder(Country, Happiness.Score):  20<br />Happiness.Score: 3.970<br />reorder(Country, Happiness.Score): Malawi","reorder(Country, Happiness.Score):  20<br />Happiness.Score: 3.970<br />reorder(Country, Happiness.Score): Malawi",null,"reorder(Country, Happiness.Score):  19<br />Happiness.Score: 3.936<br />reorder(Country, Happiness.Score): Chad","reorder(Country, Happiness.Score):  19<br />Happiness.Score: 3.936<br />reorder(Country, Happiness.Score): Chad",null,"reorder(Country, Happiness.Score):  18<br />Happiness.Score: 3.875<br />reorder(Country, Happiness.Score): Zimbabwe","reorder(Country, Happiness.Score):  18<br />Happiness.Score: 3.875<br />reorder(Country, Happiness.Score): Zimbabwe",null,"reorder(Country, Happiness.Score):  17<br />Happiness.Score: 3.808<br />reorder(Country, Happiness.Score): Lesotho","reorder(Country, Happiness.Score):  17<br />Happiness.Score: 3.808<br />reorder(Country, Happiness.Score): Lesotho",null,"reorder(Country, Happiness.Score):  16<br />Happiness.Score: 3.795<br />reorder(Country, Happiness.Score): Angola","reorder(Country, Happiness.Score):  16<br />Happiness.Score: 3.795<br />reorder(Country, Happiness.Score): Angola",null,"reorder(Country, Happiness.Score):  15<br />Happiness.Score: 3.794<br />reorder(Country, Happiness.Score): Afghanistan","reorder(Country, Happiness.Score):  15<br />Happiness.Score: 3.794<br />reorder(Country, Happiness.Score): Afghanistan",null,"reorder(Country, Happiness.Score):  14<br />Happiness.Score: 3.766<br />reorder(Country, Happiness.Score): Botswana","reorder(Country, Happiness.Score):  14<br />Happiness.Score: 3.766<br />reorder(Country, Happiness.Score): Botswana",null,"reorder(Country, Happiness.Score):  13<br />Happiness.Score: 3.657<br />reorder(Country, Happiness.Score): Benin","reorder(Country, Happiness.Score):  13<br />Happiness.Score: 3.657<br />reorder(Country, Happiness.Score): Benin",null,"reorder(Country, Happiness.Score):  12<br />Happiness.Score: 3.644<br />reorder(Country, Happiness.Score): Madagascar","reorder(Country, Happiness.Score):  12<br />Happiness.Score: 3.644<br />reorder(Country, Happiness.Score): Madagascar",null,"reorder(Country, Happiness.Score):  11<br />Happiness.Score: 3.603<br />reorder(Country, Happiness.Score): Haiti","reorder(Country, Happiness.Score):  11<br />Happiness.Score: 3.603<br />reorder(Country, Happiness.Score): Haiti",null,"reorder(Country, Happiness.Score):  10<br />Happiness.Score: 3.593<br />reorder(Country, Happiness.Score): Yemen","reorder(Country, Happiness.Score):  10<br />Happiness.Score: 3.593<br />reorder(Country, Happiness.Score): Yemen",null,"reorder(Country, Happiness.Score):   9<br />Happiness.Score: 3.591<br />reorder(Country, Happiness.Score): South Sudan","reorder(Country, Happiness.Score):   9<br />Happiness.Score: 3.591<br />reorder(Country, Happiness.Score): South Sudan",null,"reorder(Country, Happiness.Score):   8<br />Happiness.Score: 3.533<br />reorder(Country, Happiness.Score): Liberia","reorder(Country, Happiness.Score):   8<br />Happiness.Score: 3.533<br />reorder(Country, Happiness.Score): Liberia",null,"reorder(Country, Happiness.Score):   7<br />Happiness.Score: 3.507<br />reorder(Country, Happiness.Score): Guinea","reorder(Country, Happiness.Score):   7<br />Happiness.Score: 3.507<br />reorder(Country, Happiness.Score): Guinea",null,"reorder(Country, Happiness.Score):   6<br />Happiness.Score: 3.495<br />reorder(Country, Happiness.Score): Togo","reorder(Country, Happiness.Score):   6<br />Happiness.Score: 3.495<br />reorder(Country, Happiness.Score): Togo",null,"reorder(Country, Happiness.Score):   5<br />Happiness.Score: 3.471<br />reorder(Country, Happiness.Score): Rwanda","reorder(Country, Happiness.Score):   5<br />Happiness.Score: 3.471<br />reorder(Country, Happiness.Score): Rwanda",null,"reorder(Country, Happiness.Score):   4<br />Happiness.Score: 3.462<br />reorder(Country, Happiness.Score): Syria","reorder(Country, Happiness.Score):   4<br />Happiness.Score: 3.462<br />reorder(Country, Happiness.Score): Syria",null,"reorder(Country, Happiness.Score):   3<br />Happiness.Score: 3.349<br />reorder(Country, Happiness.Score): Tanzania","reorder(Country, Happiness.Score):   3<br />Happiness.Score: 3.349<br />reorder(Country, Happiness.Score): Tanzania",null,"reorder(Country, Happiness.Score):   2<br />Happiness.Score: 2.905<br />reorder(Country, Happiness.Score): Burundi","reorder(Country, Happiness.Score):   2<br />Happiness.Score: 2.905<br />reorder(Country, Happiness.Score): Burundi",null,"reorder(Country, Happiness.Score):   1<br />Happiness.Score: 2.693<br />reorder(Country, Happiness.Score): Central African Republic","reorder(Country, Happiness.Score):   1<br />Happiness.Score: 2.693<br />reorder(Country, Happiness.Score): Central African Republic"],"type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,192,203,0.5)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":165.844748858448},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"World Happiness Rank in 2017","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2.45080007314682,7.77920018434524],"tickmode":"array","ticktext":["3","4","5","6","7"],"tickvals":[3,4,5,6,7],"categoryorder":"array","categoryarray":["3","4","5","6","7"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Happiness.Score","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,155.6],"tickmode":"array","ticktext":["Central African Republic","Burundi","Tanzania","Syria","Rwanda","Togo","Guinea","Liberia","South Sudan","Yemen","Haiti","Madagascar","Benin","Botswana","Afghanistan","Angola","Lesotho","Zimbabwe","Chad","Malawi","Niger","Burkina Faso","Uganda","Ukraine","Ghana","Sudan","Cambodia","Ivory Coast","Mali","Congo (Kinshasa)","Georgia","Congo (Brazzaville)","Mauritania","India","Armenia","Sri Lanka","Ethiopia","Gabon","Iraq","Zambia","Senegal","Myanmar","Mozambique","Kenya","Namibia","Bangladesh","Albania","Iran","Cameroon","Sierra Leone","Bulgaria","Egypt","Palestinian Territories","Tunisia","South Africa","Mongolia","Nepal","Kyrgyzstan","Bhutan","Tajikistan","Nigeria","Vietnam","Somalia","Macedonia","Honduras","Bosnia and Herzegovina","Portugal","Lebanon","Greece","Dominican Republic","Azerbaijan","Morocco","Montenegro","Venezuela","Indonesia","Pakistan","China","Kosovo","Croatia","Jamaica","Hungary","Jordan","Serbia","Philippines","Hong Kong S.A.R., China","Paraguay","Turkey","Libya","Belarus","Estonia","Cyprus","Mauritius","Peru","Slovenia","North Cyprus","Kazakhstan","Turkmenistan","Bolivia","Romania","Moldova","South Korea","Latvia","Algeria","Lithuania","Japan","Belize","Russia","Italy","Uzbekistan","Poland","El Salvador","Ecuador","Nicaragua","Malaysia","Bahrain","Slovakia","Kuwait","Trinidad and Tobago","Saudi Arabia","Colombia","Qatar","Spain","Taiwan Province of China","Thailand","France","Panama","Guatemala","Uruguay","Malta","Singapore","Mexico","Argentina","Czech Republic","Brazil","United Arab Emirates","Chile","United Kingdom","Luxembourg","Belgium","Germany","Ireland","United States","Austria","Costa Rica","Israel","Australia","Sweden","New Zealand","Canada","Netherlands","Finland","Switzerland","Iceland","Denmark","Norway"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155],"categoryorder":"array","categoryarray":["Central African Republic","Burundi","Tanzania","Syria","Rwanda","Togo","Guinea","Liberia","South Sudan","Yemen","Haiti","Madagascar","Benin","Botswana","Afghanistan","Angola","Lesotho","Zimbabwe","Chad","Malawi","Niger","Burkina Faso","Uganda","Ukraine","Ghana","Sudan","Cambodia","Ivory Coast","Mali","Congo (Kinshasa)","Georgia","Congo (Brazzaville)","Mauritania","India","Armenia","Sri Lanka","Ethiopia","Gabon","Iraq","Zambia","Senegal","Myanmar","Mozambique","Kenya","Namibia","Bangladesh","Albania","Iran","Cameroon","Sierra Leone","Bulgaria","Egypt","Palestinian Territories","Tunisia","South Africa","Mongolia","Nepal","Kyrgyzstan","Bhutan","Tajikistan","Nigeria","Vietnam","Somalia","Macedonia","Honduras","Bosnia and Herzegovina","Portugal","Lebanon","Greece","Dominican Republic","Azerbaijan","Morocco","Montenegro","Venezuela","Indonesia","Pakistan","China","Kosovo","Croatia","Jamaica","Hungary","Jordan","Serbia","Philippines","Hong Kong S.A.R., China","Paraguay","Turkey","Libya","Belarus","Estonia","Cyprus","Mauritius","Peru","Slovenia","North Cyprus","Kazakhstan","Turkmenistan","Bolivia","Romania","Moldova","South Korea","Latvia","Algeria","Lithuania","Japan","Belize","Russia","Italy","Uzbekistan","Poland","El Salvador","Ecuador","Nicaragua","Malaysia","Bahrain","Slovakia","Kuwait","Trinidad and Tobago","Saudi Arabia","Colombia","Qatar","Spain","Taiwan Province of China","Thailand","France","Panama","Guatemala","Uruguay","Malta","Singapore","Mexico","Argentina","Czech Republic","Brazil","United Arab Emirates","Chile","United Kingdom","Luxembourg","Belgium","Germany","Ireland","United States","Austria","Costa Rica","Israel","Australia","Sweden","New Zealand","Canada","Netherlands","Finland","Switzerland","Iceland","Denmark","Norway"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Country","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","showSendToCloud":false},"source":"A","attrs":{"36f3a706cde":{"x":{},"y":{},"type":"scatter"},"36f3b91db00":{"yend":{},"x":{},"y":{}}},"cur_data":"36f3a706cde","visdat":{"36f3a706cde":["function (y) ","x"],"36f3b91db00":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>It seems that mostly European countries have the higher scores and Afican countries tend to have the lower scores. We will follow this up with a Worldmap plot to verify this assumption.</p>
+</div>
+<div id="world-map-happiness-scores-on-a-map" class="section level3">
+<h3>1.3 World Map: Happiness Scores on a map</h3>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The world map shows us that North America, Australia, and Northern/ Western Europe rank highest. South American and Asian countries tend to have much more divers scores. While some crysis-stricken countries in the African continent tend to be much lower on this scale compared to the rest of the world.</p>
+</div>
+</div>
+<div id="scatter-plot-correlation-between-gdp-happiness-and-health-expectancy." class="section level2">
+<h2>1.4 Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.</h2>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>This interactive scatter plot shows that there is a strong positive correlation between GDP and Happiness. Also points are coloured by Health score, which also suggeests that Health tends to have a big impact to happiness.</p>
+<div id="summary" class="section level3">
+<h3>3.0 Summary</h3>
+<p>In general there seems to be a positive correlation between the Health Life Expectancy of a country, it’s economic output (GDP) and the happiness of the population, which is quite obvious. Some interesting points while exploring the correlations between the different factors in the data set are: - GDP per Capita / Family and Health Life Expectancy seem to be most influencial to the happiness of a country’s citizens. - Curiously GDP per Capita and Generosity have a slightly negative correlation - this might be an outlier or an error in my methodology, but analyzing this goes beyond my R capabilities.</p>
+<p>Furthermore looking at the map it is noticable that the majority of South American Contries tend to have proportinally higher Happiness Scores when compared to their economic prowess per capita. This might be culturally influenced.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
