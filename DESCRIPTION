@@ -16,4 +16,5 @@ Imports:
     corrplot,
     wildcard,
     viridis,
-    dplyr
+    dplyr,
+    plotly
