@@ -36,7 +36,7 @@ number.cex = 0.7
 )
 ```
 
-### 1.2_Ranking: Contries and their Scores
+### 1.2_Ranking: Countries and their Scores
 
 ```{r}
 library(plotly)
