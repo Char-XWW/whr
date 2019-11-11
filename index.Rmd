@@ -21,6 +21,7 @@ data <- readr::read_csv(file = "data/2017.csv")
 ### 1.1_Correlation map
 
 ```{r}
+install.packages("corrplot")
 library("corrplot")
 library("dplyr")
 corrplot(cor(data %>%

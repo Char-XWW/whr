@@ -18,4 +18,6 @@ Imports:
     wildcard
     viridis
     dplyr
+    install.packages("maps", repos = "http://cran.us.r-project.org")
+    install.packages("wildcard", repos = "http://cran.us.r-project.org")
     
