@@ -19,8 +19,6 @@ Happinnes is a very subjective term. Trying to quantify and standardize it is a 
 ### 0.1 Prepare Data
 
 ```{r}
-install.packages("plotly")
-install.packages("corrplot")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 
@@ -42,7 +40,8 @@ tl.cex = 0.7,
 number.cex = 0.7
 )
 ```
-This correlation plots shows us that Economic GDP score tends to have the biggest impact to happiness score and the Health score has the second biggest impact.Correlation between EGP and Happiness Score, Whisker high, whisker low are all 0,81, and it reachs even 0,84 when we put EGP and health Life Expectancy together.  
+  
+  This correlation plots shows us that Economic GDP score tends to have the biggest impact to happiness score and the Health score has the second biggest impact.Correlation between EGP and Happiness Score, Whisker high, whisker low are all 0,81, and it reachs even 0,84 when we put EGP and health Life Expectancy together.  
   
 
 ### 1.2 Ranking: Countries and their Scores
@@ -54,7 +53,8 @@ p <- ggplot(data = data, aes(x = Happiness.Score, y = reorder(Country, Happiness
   labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score")
 ggplotly(p)
 ```
-Seems most of european countries have higher scores and afican countries have the lower scores. Follow we will use a Worldmap funktion to verify this guess.  
+  
+  It seems that mostly european countries have the higher scores and Afican countries tend to have the lower scores. We will follow this up with a Worldmap plot to verify this guess.  
   
 ### 1.3 World Map: Happiness Scores on a map
 
@@ -93,8 +93,10 @@ ggplot() +
   ) +
   labs(title = "World Happiness Score in 2017")
 ```
-Worldmap shows us that America has actually the highest score while most of european contries have good scores.
-Asien countries follows Europe. Compare to the rest of the world a lot of african countries stay less happy or even unhappy.  
+  
+  Worldmap shows us that North America, Australia, and Northern/ Western Europe rank highest.
+South American and Asian countries tend to have much diverser scores. While some crysis countries in the African continent tend to be much lower on this scale compared to the rest of the world.  
+  
   
 ## 1.4 Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.
 
@@ -107,7 +109,8 @@ w <- w + geom_smooth()
 w <- w + scale_color_viridis(option = "D")
 w
 ```
-This interactive scatterplot shows that there is a strong positive correlation between GDP and Happiness. Also points are coloured by the Health score, which also suggeests that Health tends to have big impact to happiness.  
+  
+  This interactive scatterplot shows that there is a strong positive correlation between GDP and Happiness. Also points are coloured by Health score, which also suggeests that Health tends to have a big impact to happiness.  
   
 ### 3.0 Summary
 
