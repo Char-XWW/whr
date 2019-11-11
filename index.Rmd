@@ -42,6 +42,7 @@ number.cex = 0.7
 ```
   
   This correlation plots shows us that Economic GDP score tends to have the biggest impact to happiness score and the Health score has the second biggest impact.Correlation between EGP and Happiness Score, Whisker high, whisker low are all 0,81, and it reachs even 0,84 when we put EGP and health Life Expectancy together.  
+  *Whiskers* are the minimum and maximum deviations of the happiness score per country, excluding the outliers. It makes sense that they correlate, although a correlation of 1 might not be realistic. It does not help the analysis and should be ignored.  
   
 
 ### 1.2 Ranking: Countries and their Scores
