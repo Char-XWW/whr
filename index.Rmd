@@ -14,6 +14,8 @@ Happinnes is a very subjective term. Trying to quantify and standardize it is a 
 ### 0.1_Prepare Data
 
 ```{r}
+install.packages("plotly")
+install.packages("corrplot")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 
@@ -21,7 +23,6 @@ data <- readr::read_csv(file = "data/2017.csv")
 ### 1.1_Correlation map
 
 ```{r}
-install.packages("corrplot")
 library("corrplot")
 library("dplyr")
 corrplot(cor(data %>%
@@ -92,7 +93,6 @@ ggplot() +
 ## 1.4_Scatter Plot: Correlation between GDP, Happiness and Health Expectancy.
 
 ```{r}
-
 library("viridis")
 w <- ggplot(data = data, aes(Economy..GDP.per.Capita., Happiness.Score, color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
 w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
