@@ -1,8 +1,8 @@
 ---
 title: "World Happiness Report in 2017"
 output: html_document
-Author: Weiwei Xia
-Date: 11.11.2019
+author: Weiwei Xia
+date: 11.11.2019
 ---
 ```{r setup,include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
