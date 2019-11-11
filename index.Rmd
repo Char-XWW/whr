@@ -11,81 +11,76 @@ Happinnes is a very subjective term. Trying to quantify and standardize it is a 
 
  Now with the help of some graphics I will attempt to explore the  World Happiness Score in 2017 and the possible factors influencing it. 
 
-```{r}
-
-```
-
-### 0.1_Insatalling packages
+### 0.1_Prepare Data
 
 ```{r}
-install.packages("corrplot")
-install.packages("maps", repos = "http://cran.us.r-project.org")
-install.packages("wildcard", repos = "http://cran.us.r-project.org")
-install.packages("viridis")
-install.packages("dplyr")
 data <- readr::read_csv(file = "data/2017.csv")
 ```
 
 ## 1.0_ Graphic
-
-```{r}
-
-```
-
 ### 1.1_Correlation map
 
 ```{r}
-
 library("corrplot")
 library("dplyr")
-corrplot(cor(data %>% 
-               select(Happiness.Score:Dystopia.Residual)), 
-         method="color",  
-         sig.level = 0.01, insig = "blank",
-         addCoef.col = "black", 
-         tl.srt=45, 
-         type="upper",
-         tl.col = "gray",
-         tl.cex = 0.7,
-         number.cex = 0.7
-         )
+corrplot(cor(data %>%
+  select(Happiness.Score:Dystopia.Residual)),
+method = "color",
+sig.level = 0.01, insig = "blank",
+addCoef.col = "black",
+tl.srt = 45,
+type = "upper",
+tl.col = "gray",
+tl.cex = 0.7,
+number.cex = 0.7
+)
 ```
 
 ### 1.2_Ranking: Contries and their Scores
 
 ```{r}
 library(plotly)
-p <- ggplot(data = data, aes(x = Happiness.Score, y = reorder(Country, Happiness.Score))) + geom_point(colour = "red", alpha = .5) + 
-geom_segment(aes(yend=reorder(Country, Happiness.Score)), xend = 0, colour="pink", alpha = .5) + theme(axis.text.y = element_text(angle = 0, hjust = 1)
-) + 
-labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score")
-usethis::use_package("plotly")
+p <- ggplot(data = data, aes(x = Happiness.Score, y = reorder(Country, Happiness.Score))) + geom_point(colour = "red", alpha = .5) +
+  geom_segment(aes(yend = reorder(Country, Happiness.Score)), xend = 0, colour = "pink", alpha = .5) + theme(axis.text.y = element_text(angle = 0, hjust = 1)) +
+  labs(title = "World Happiness Rank in 2017", y = "Country", x = "Happiness.Score")
 ggplotly(p)
 ```
 
 ### 1.3_World Map: Happiness Scores on a map
 
 ```{r}
-library("wildcard" )
-world <- map_data('world')
+library("wildcard")
+world <- map_data("world")
 world <- world %>% filter(region != "Antarctica")
 world <- fortify(world)
 data <- data
-data <- wildcard(df = data, wildcard = "United States", values = "USA",
-         expand = TRUE, rules = NULL)
-data <- wildcard(df = data, wildcard = "United Kingdom", values = "UK",
-         expand = TRUE, rules = NULL)
-data <- wildcard(df = data, wildcard = "Democratic Republic of the Congo", values = "Congo (Kinshasa)",
-         expand = TRUE, rules = NULL)
-ggplot() + 
-  geom_map(data=world, map=world,
-                  aes(x=long, y=lat, group=group, map_id=region),
-                  fill="white", colour="black") + 
-  geom_map(data=data, map=world,
-                  aes(fill=Happiness.Score, map_id=Country),
-                  colour="black") + 
-  scale_fill_continuous(low="red", high="yellow",
-                               guide="colorbar") + 
+data <- wildcard(
+  df = data, wildcard = "United States", values = "USA",
+  expand = TRUE, rules = NULL
+)
+data <- wildcard(
+  df = data, wildcard = "United Kingdom", values = "UK",
+  expand = TRUE, rules = NULL
+)
+data <- wildcard(
+  df = data, wildcard = "Democratic Republic of the Congo", values = "Congo (Kinshasa)",
+  expand = TRUE, rules = NULL
+)
+ggplot() +
+  geom_map(
+    data = world, map = world,
+    aes(x = long, y = lat, group = group, map_id = region),
+    fill = "white", colour = "black"
+  ) +
+  geom_map(
+    data = data, map = world,
+    aes(fill = Happiness.Score, map_id = Country),
+    colour = "black"
+  ) +
+  scale_fill_continuous(
+    low = "red", high = "yellow",
+    guide = "colorbar"
+  ) +
   labs(title = "World Happiness Score in 2017")
 ```
 
@@ -94,9 +89,9 @@ ggplot() +
 ```{r}
 
 library("viridis")
-w <- ggplot(data = data, aes( Economy..GDP.per.Capita., Happiness.Score,color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
+w <- ggplot(data = data, aes(Economy..GDP.per.Capita., Happiness.Score, color = Health..Life.Expectancy.), main = "Correlation of GDP, Happiness and Health Expectancy in 2017") + geom_point()
 w <- w + ggtitle("Correlation of GDP, Happiness and Health Expectancy in 2017")
-w <- w + labs(x = "GDP Per Capita", y = "Happiness Score", colour = "Health Expectancy" )
+w <- w + labs(x = "GDP Per Capita", y = "Happiness Score", colour = "Health Expectancy")
 w <- w + geom_smooth()
 w <- w + scale_color_viridis(option = "D")
 w
@@ -104,14 +99,10 @@ w
 
 ### Summary
 
-
 In general there seems to be a positive correlation between the Health Life Expectancy of a country, it's economic output (GDP) and the happiness of the population, which is quite obvious.
 Some interesting points while exploring the correlations between the different factors in the data set are:
 - GDP per Capita / Family and Health Life Expectancy seem to be most influencial to the happiness of a country's citizens.
 - Curiously GDP per Capita and Generosity have a slightly negative correlation - this might be an outlier or an error in my methodology, but analyzing this goes beyond my R capabilities.
 
 Furthermore looking at the map it is noticable that the majority of South American Contries tend to have proportinally higher Happiness Scores when compared to their economic prowess per capita. This might be culturally influenced. 
-
-```{r}
-```
 

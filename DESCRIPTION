@@ -13,3 +13,9 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     plotly
+    corrplot
+    maps
+    wildcard
+    viridis
+    dplyr
+    
